@@ -24,16 +24,16 @@ public class Ticket {
 	private String trainee;
 	
 	@Column
-	private String Cohort;
+	private String cohort;
 	
 	@Column
-	private String Topics;
+	private String topic;
 	
 	@Column
 	private String trainer;
 	
 	@Column
-	private String subject;
+	private String title;
 	
 	@Column
 	@NotNull
@@ -42,16 +42,18 @@ public class Ticket {
 	@Column
 	private boolean completed;
 
-	public Ticket(@NotNull String trainee, String cohort, String topics, String trainer, String subject,
-			@NotNull String description) {
+	public Ticket(@NotNull String trainee, String cohort, String topic, String trainer, String title,
+			@NotNull String description, boolean completed) {
 		super();
 		this.trainee = trainee;
-		Cohort = cohort;
-		Topics = topics;
+		this.cohort = cohort;
+		this.topic = topic;
 		this.trainer = trainer;
-		this.subject = subject;
+		this.title = title;
 		this.description = description;
+		this.completed = completed;
 	}
+
 	
 	
 
