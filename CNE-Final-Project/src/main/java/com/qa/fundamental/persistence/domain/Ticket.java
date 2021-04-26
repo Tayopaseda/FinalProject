@@ -38,6 +38,9 @@ public class Ticket {
 	@Column
 	@NotNull
 	private String description;
+	
+	@Column
+	private boolean completed;
 
 	public Ticket(@NotNull String trainee, String cohort, String topics, String trainer, String subject,
 			@NotNull String description) {
