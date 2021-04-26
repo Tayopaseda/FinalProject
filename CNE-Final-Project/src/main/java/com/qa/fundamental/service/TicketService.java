@@ -1,6 +1,7 @@
 package com.qa.fundamental.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,5 +51,16 @@ public class TicketService {
 	public boolean deleteTicket(Long id) {
 		this.repo.deleteById(id);
 		return !this.repo.existsById(id);
+	}
+	
+	public Ticket toggleCompleted(Ticket ticket) {
+		Ticket updated_ticket = ticket;
+		updated_ticket.setCompleted(!ticket.isCompleted());
+		return this.repo.save(updated_ticket);
+	}
+	
+	public Ticket getById(Long id) {
+		Optional<Ticket> ticket = this.repo.findById(id);
+		return ticket.get();
 	}
 }
