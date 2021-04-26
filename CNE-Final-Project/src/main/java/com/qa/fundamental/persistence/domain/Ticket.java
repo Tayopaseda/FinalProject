@@ -44,8 +44,9 @@ public class Ticket {
 	@Column
 	private boolean completed;
 
+
 	public Ticket(String trainee, String cohort, String topic, String trainer, String title,
-			String description, boolean completed) {
+			String description) {
 		super();
 		this.trainee = trainee;
 		this.cohort = cohort;
@@ -53,9 +54,8 @@ public class Ticket {
 		this.trainer = trainer;
 		this.title = title;
 		this.description = description;
-		this.completed = completed;
+		this.completed = false;
 	}
-
 	
 	
 

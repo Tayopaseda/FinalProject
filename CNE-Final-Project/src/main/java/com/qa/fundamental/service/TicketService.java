@@ -53,9 +53,9 @@ public class TicketService {
 		return !this.repo.existsById(id);
 	}
 	
-	public Ticket toggleCompleted(Ticket ticket) {
-		Ticket updated_ticket = ticket;
-		updated_ticket.setCompleted(!ticket.isCompleted());
+	public Ticket toggleCompleted(Long id) {
+		Ticket updated_ticket = this.repo.findById(id).get();
+		updated_ticket.setCompleted(!updated_ticket.isCompleted());
 		return this.repo.save(updated_ticket);
 	}
 	

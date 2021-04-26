@@ -85,8 +85,7 @@ public class TicketController {
 	
 	@PutMapping("/completed/{id}")
 	public ResponseEntity<Ticket> toggleCompleted(@PathVariable Long id){
-		Ticket ticket = this.service.getById(id);
-		Ticket new_ticket = this.service.toggleCompleted(ticket);
+		Ticket new_ticket = this.service.toggleCompleted(id);
 		return new ResponseEntity<Ticket>(new_ticket, HttpStatus.CREATED);
 	}
 	
