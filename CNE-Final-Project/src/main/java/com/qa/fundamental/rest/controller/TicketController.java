@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.fundamental.persistence.domain.PhoneBook;
 import com.qa.fundamental.persistence.domain.Ticket;
 import com.qa.fundamental.service.TicketService;
 
