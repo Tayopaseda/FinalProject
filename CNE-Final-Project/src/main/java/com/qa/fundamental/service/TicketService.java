@@ -46,4 +46,9 @@ public class TicketService {
 	public List<Ticket> readQueuedByTopic(String topic){
 		return this.repo.readQueuedByTopic(topic);
 	}
+	
+	public boolean deleteTicket(Long id) {
+		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
+	}
 }
