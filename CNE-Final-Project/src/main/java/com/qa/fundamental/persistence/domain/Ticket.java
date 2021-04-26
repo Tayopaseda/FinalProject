@@ -9,10 +9,12 @@ import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Ticket {
 	
 	@Id
@@ -42,8 +44,8 @@ public class Ticket {
 	@Column
 	private boolean completed;
 
-	public Ticket(@NotNull String trainee, String cohort, String topic, String trainer, String title,
-			@NotNull String description, boolean completed) {
+	public Ticket(String trainee, String cohort, String topic, String trainer, String title,
+			String description, boolean completed) {
 		super();
 		this.trainee = trainee;
 		this.cohort = cohort;

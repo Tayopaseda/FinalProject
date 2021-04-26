@@ -63,13 +63,13 @@ public class TicketController {
 		return ResponseEntity.ok(this.service.readByQueuedCohort(cohort)); 
 	}
 	
-	@GetMapping("/readQueued/Topic")
-	public ResponseEntity<List<Ticket>> readQueuedByTopic(@RequestBody String topic){
+	@GetMapping("/readQueued/Topic/{topic}")
+	public ResponseEntity<List<Ticket>> readQueuedByTopic(@PathVariable String topic){
 		return ResponseEntity.ok(this.service.readQueuedByTopic(topic)); 
 	}
 	
-	@GetMapping("/readCompleted/Topic")
-	public ResponseEntity<List<Ticket>> readCompletedByTopic(@RequestBody String topic){
+	@GetMapping("/readCompleted/Topic/{topic}")
+	public ResponseEntity<List<Ticket>> readCompletedByTopic(@PathVariable String topic){
 		return ResponseEntity.ok(this.service.readCompletedByTopic(topic)); 
 	}
 	
