@@ -30,6 +30,7 @@ public class TicketServiceUnitTests {
 	
 	private Ticket ticket_1 = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init","time","React issue", false);
 	private Ticket ticket_1_updated = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "terry", "Terraform init", "time","sdbdjbdjbdbd", false);
+	private Ticket ticket_12 = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init","time","React issue", true);
 	private Ticket ticket_2 = new Ticket(2L, "trainee2", "cnejan", "frontend", "Reece", "react","time" ,"React issue", false);
 	private Ticket ticket_3 = new Ticket(3L, "Aadil", "FebCNative", "terraform", "Vinesh", "jenkins", "time","sdbdjbdjbdbd", true);
 	private Ticket ticket_4 = new Ticket(4L, "Haydon", "FebCNative", "GCP", "reece", "Security rules", "time","sdbdjbdjbdbd", false);
@@ -112,10 +113,10 @@ public class TicketServiceUnitTests {
 	void testToggleCompleted() {
 		Optional<Ticket> op = Optional.ofNullable(ticket_1);
 		Mockito.when(this.repo.findById(1L)).thenReturn(op);
-		Mockito.when(this.repo.save(new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "time","sdbdjbdjbdbd", true))).thenReturn(new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "time","sdbdjbdjbdbd", true));
-		Assertions.assertThat(this.service.toggleCompleted(1L)).isEqualTo(new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "time","sdbdjbdjbdbd", true));
+		Mockito.when(this.repo.save(ticket_12)).thenReturn(ticket_12);
+		Assertions.assertThat(this.service.toggleCompleted(1L)).isEqualTo(ticket_12);
 		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
-		Mockito.verify(this.repo, Mockito.times(1)).save(new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "time","sdbdjbdjbdbd", true));
+		Mockito.verify(this.repo, Mockito.times(1)).save(ticket_12);
 	}
 	
 	
