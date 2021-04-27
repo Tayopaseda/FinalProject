@@ -1,33 +1,55 @@
 import { useEffect, useState } from 'react';
-import {Container, Row, Col, Button, Spinner} from 'react-bootstrap'
-import ClosedTickets from '../TicketComponent/ClosedTickets';
-import OpenTickets from '../TicketComponent/OpenTickets'
-import Ticket from '../TicketComponent/Ticket';
+import Spinner from 'react-bootstrap/Spinner'
+// import Ticket from '../TicketComponent/Ticket';
 import axios from 'axios';
-
+import { Button, Card, CardColumns, Col, Container, Row } from 'react-bootstrap';
+import OpenTickets from '../TicketComponent/OpenTickets';
+import ClosedTickets from '../TicketComponent/ClosedTickets';
 
  const Main = () => {
 
-    const [data, setData] = useState([]);
-    const [error, setError] = useState(null);
+     const [dataCompleted, setDataCompleted] = useState([]);
+     const [dataQueued, setDataQueued] = useState([]);
+     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
 
 
-    useEffect(() => 
-    axios
-        .get(``)
+    useEffect(() => {
+        fetchOpenQueue();
+    }, []);
+
+    useEffect(() => {
+        fetchClosedQueue();
+    }, []);
+
+    const fetchOpenQueue =()=>{
+        axios
+        .get(`http://localhost:8080/ticket/readQueued`)
         .then((response) => {
             setIsLoaded(true);
-            setData(response.data.data);
+            setDataQueued(response.data);
         })
         .catch((error) => {
             setIsLoaded(true);
             setError(error);
+        });
+    }
+
+    const fetchClosedQueue =()=>{
+        axios
+        .get(`http://localhost:8080/ticket/readCompleted`)
+        .then((response) => {
+            setIsLoaded(true);
+            setDataCompleted(response.data);
         })
-        )
+        .catch((error) => {
+            setIsLoaded(true);
+            setError(error);
+        });
+    }
         
         if(error){
-            return <h1>We're having trouble receiving the queue! {error.message}</h1>
+            return <h3>We're having trouble receiving the queue! {error.message} </h3>
         } else if (!isLoaded){
             
             return(
@@ -43,14 +65,7 @@ import axios from 'axios';
         return(
             
             <>
-            {
-                data.map((ticket) =>
-                <tr>
-                    <Ticket key={ticket.id} ticket={ticket}/>
-                </tr>
-                )
-            }
-                <Container>
+            <Container>
             <Button
                 variant="success"
                 >Create Ticket
@@ -58,22 +73,23 @@ import axios from 'axios';
             <br/>
             <br/>
 
+            <CardColumns>
+            {
+                dataQueued.map((ticket) =>
+                    <OpenTickets key={ticket.id} openTicket={ticket}/>
+                )
+            }
+            </CardColumns>
+            <CardColumns>
 
-        <Row>
-            <Col>
-                <Row><OpenTickets/></Row>
-                <Row>2</Row>
-                <Row>3</Row>
-            </Col>
-            <Col>
-                <Row><ClosedTickets/></Row>
-                <Row>2</Row>
-                <Row>3</Row>
-            </Col>
-        </Row>
-        </Container>
-
-        </>
+            {
+                dataCompleted.map((ticket) =>
+                    <ClosedTickets key={ticket.id} closedTicket={ticket}/>
+                )
+            }
+            </CardColumns>
+            </Container>
+         </>
 )
         }
     }
