@@ -14,4 +14,4 @@ const ClosedTickets = () => {
 )
 };
 
-export default ClosedTickets;
+export default ClosedTickets
