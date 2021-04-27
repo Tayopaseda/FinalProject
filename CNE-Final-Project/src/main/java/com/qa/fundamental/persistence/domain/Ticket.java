@@ -39,7 +39,7 @@ public class Ticket {
 	
 	@Column
 	@NotNull
-	private String description;
+	private String _description;
 	
 	@Column
 	private boolean completed;
@@ -53,7 +53,7 @@ public class Ticket {
 		this.topic = topic;
 		this.trainer = trainer;
 		this.title = title;
-		this.description = description;
+		this._description = description;
 		this.completed = false;
 	}
 	
