@@ -41,22 +41,34 @@ public class TicketControllerIntegrationTest {
 	private ObjectMapper mapper;
 	
 	
+	private Ticket ticket_1 = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init","React issue", false);
+	private Ticket ticket_1_updated = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "terry", "Terraform init", "sdbdjbdjbdbd", false);
+	private Ticket ticket_2 = new Ticket(2L, "trainee2", "cnejan", "frontend", "Reece", "react", "React issue", false);
+	private Ticket ticket_3 = new Ticket(3L, "Aadil", "FebCNative", "terraform", "Vinesh", "jenkins", "sdbdjbdjbdbd", true);
+	private Ticket ticket_4 = new Ticket(4L, "Haydon", "FebCNative", "GCP", "reece", "Security rules", "sdbdjbdjbdbd", false);
+	
+	
 	
 	@Test
 	void testCreateTicket() throws Exception {
-		Ticket newTicket = new Ticket(4L,"Haydon", "FebCNative", "GCP", "reece", "Security rules", "sdbdjbdjbdbd", false);
-		String requestBody = this.mapper.writeValueAsString(newTicket);
 
+//		Creating JSON
+		String requestBody = this.mapper.writeValueAsString(ticket_4);
+
+//		Test create link
 		RequestBuilder request = post("/ticket/create").contentType(MediaType.APPLICATION_JSON).content(requestBody);
 
+//		obtained result
 		ResultMatcher checkStatus = status().isCreated();
 
-		Ticket savedTicket = new Ticket(4L,"Haydon", "FebCNative", "GCP", "reece", "Security rules", "sdbdjbdjbdbd", false);
-		savedTicket.setId(4L);
 
-		String resultBody = this.mapper.writeValueAsString(savedTicket);
+//		creating JSON for target
+		String resultBody = this.mapper.writeValueAsString(ticket_4);
+		
+//		Result target
 		ResultMatcher checkBody = content().json(resultBody);
 
+//		Match results
 		this.mockMVC.perform(request).andExpect(checkStatus).andExpect(checkBody);
 	}
 	
@@ -65,10 +77,6 @@ public class TicketControllerIntegrationTest {
 	
 	@Test
 	void testReadQueuedTicket() throws Exception {
-		// MUST match the test database record
-		Ticket ticket_1 = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "React issue", false);
-		Ticket ticket_2 = new Ticket(2L, "trainee2", "cnejan", "frontend", "Reece", "react", "React issue", false);
-
 		
 
 		List<Ticket> tickets = new ArrayList<>();
@@ -84,11 +92,6 @@ public class TicketControllerIntegrationTest {
 	
 	@Test
 	void testReadCompletedTicket() throws Exception {
-		// MUST match the test database record
-		Ticket ticket_3 = new Ticket(3L, "Aadil", "FebCNative", "terraform", "Vinesh", "jenkins", "sdbdjbdjbdbd", true);
-		
-
-		
 		
 
 		List<Ticket> tickets = new ArrayList<>();
@@ -103,13 +106,38 @@ public class TicketControllerIntegrationTest {
 	}
 	
 	@Test
+	void testReadQueuedCohortTicket() throws Exception {
+		
+		List<Ticket> tickets = new ArrayList<>();
+		tickets.add(ticket_1);
+		
+		
+		
+		
+		String responseBody = this.mapper.writeValueAsString(tickets);
+		System.out.println();
+		this.mockMVC.perform(get("/ticket/readQueued/Cohort/FebCNative")).andExpect(status().isOk()).andExpect(content().json(responseBody));
+
+	}
+	
+	@Test
+	void testReadCompletedCohortTicket() throws Exception {
+
+		List<Ticket> tickets = new ArrayList<>();
+		tickets.add(ticket_3);
+		
+		
+		
+		
+		String responseBody = this.mapper.writeValueAsString(tickets);
+		System.out.println();
+		this.mockMVC.perform(get("/ticket/readCompleted/Cohort/FebCNative")).andExpect(status().isOk()).andExpect(content().json(responseBody));
+
+	}
+	
+	@Test
 	void testReadQueuedTopicTicket() throws Exception {
-		// MUST match the test database record
-		Ticket ticket_1 = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "React issue", false);
 		
-
-		
-
 		List<Ticket> tickets = new ArrayList<>();
 		tickets.add(ticket_1);
 		
@@ -124,11 +152,6 @@ public class TicketControllerIntegrationTest {
 	
 	@Test
 	void testReadCompletedTopicTicket() throws Exception {
-		// MUST match the test database record
-		Ticket ticket_3 = new Ticket(3L, "Aadil", "FebCNative", "terraform", "Vinesh", "jenkins", "sdbdjbdjbdbd", true);
-		
-
-		
 
 		List<Ticket> tickets = new ArrayList<>();
 		tickets.add(ticket_3);
@@ -141,5 +164,60 @@ public class TicketControllerIntegrationTest {
 		this.mockMVC.perform(get("/ticket/readCompleted/Topic/terraform")).andExpect(status().isOk()).andExpect(content().json(responseBody));
 
 	}
+	
+	
+	@Test
+	void testCompletedTicket() throws Exception {
+		Long id = 1L;
+		Ticket updatedTicket = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "React issue", false);
+		String requestBody = this.mapper.writeValueAsString(updatedTicket);
+		RequestBuilder request = put("/ticket/completed/" + id).contentType(MediaType.APPLICATION_JSON)
+				.content(requestBody);
+
+		ResultMatcher checkStatus = status().isCreated();
+
+		Ticket returnedTicket = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "React issue", true);
+		ticket_1.setId(id);
+
+		String resultBody = this.mapper.writeValueAsString(returnedTicket);
+		ResultMatcher checkBody = content().json(resultBody);
+
+		this.mockMVC.perform(request).andExpect(checkStatus).andExpect(checkBody);
+
+	}
+	
+	
+	@Test
+	void testUpdateTicket() throws Exception {
+		
+		Long id = 1L;
+		
+		String requestBody = this.mapper.writeValueAsString(ticket_1_updated);
+		RequestBuilder request = put("/ticket/update/" + id).contentType(MediaType.APPLICATION_JSON)
+				.content(requestBody);
+
+		ResultMatcher checkStatus = status().isAccepted();
+
+		String resultBody = this.mapper.writeValueAsString(ticket_1_updated);
+		ResultMatcher checkBody = content().json(resultBody);
+
+		this.mockMVC.perform(request).andExpect(checkStatus).andExpect(checkBody);
+
+	}
+	
+	@Test
+	void testDeleteTicket() throws Exception {
+
+//		Test delete connection
+		RequestBuilder ticketrequest = delete("/ticket/delete/1");
+	
+//      Result target
+		ResultMatcher ticketStatus = status().isNoContent();
+
+//		Match results
+		this.mockMVC.perform(ticketrequest).andExpect(ticketStatus);
+
+	}
+	
 
 }
