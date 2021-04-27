@@ -8,9 +8,9 @@ import ClosedTickets from '../TicketComponent/ClosedTickets';
 
  const Main = () => {
 
-     const [dataCompleted, setDataCompleted] = useState([]);
-     const [dataQueued, setDataQueued] = useState([]);
-     const [error, setError] = useState(null);
+    const [dataCompleted, setDataCompleted] = useState([]);
+    const [dataQueued, setDataQueued] = useState([]);
+    const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
 
 
@@ -73,21 +73,29 @@ import ClosedTickets from '../TicketComponent/ClosedTickets';
             <br/>
             <br/>
 
-            <CardColumns>
+            <Row>
+                <Col>
+                <h1>Queue</h1>
             {
                 dataQueued.map((ticket) =>
+                <Row>
                     <OpenTickets key={ticket.id} openTicket={ticket}/>
+                </Row>
                 )
             }
-            </CardColumns>
-            <CardColumns>
-
+                </Col>
+                <Col>
+                <h1>Completed</h1>
             {
                 dataCompleted.map((ticket) =>
+                <Row>
                     <ClosedTickets key={ticket.id} closedTicket={ticket}/>
+                </Row>
                 )
             }
-            </CardColumns>
+                </Col>
+            </Row>
+
             </Container>
          </>
 )
