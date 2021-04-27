@@ -62,23 +62,6 @@ public class TicketControllerIntegrationTest {
 	
 	
 	
-  
-	
-	
-//	@Test
-//	void testDelete() throws Exception {
-//		
-////		Test delete connection
-//		RequestBuilder ticketrequest = delete("/ticket/delete/1");
-//		
-////      Result target
-//		ResultMatcher ticketStatus = status().isOk();
-//		
-////		Match results
-//		this.mockMVC.perform(ticketrequest).andExpect(ticketStatus);
-//	}
-	
-	
 	
 	@Test
 	void testReadQueuedTicket() throws Exception {
