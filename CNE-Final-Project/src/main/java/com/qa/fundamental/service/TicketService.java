@@ -72,6 +72,7 @@ public class TicketService {
 		old.setTopic(ticket.getTopic());
 		old.setTrainee(ticket.getTrainee());
 		old.setTrainer(ticket.getTrainer());
+		old.setDateTime(ticket.getDateTime());
 		return this.repo.save(old);
 	}
 }

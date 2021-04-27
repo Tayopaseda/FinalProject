@@ -33,16 +33,16 @@ public class TicketServiceIntegrationTests {
 	private TicketService service;
 	
 	
-	private Ticket ticket_1 = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "React issue", false);
-	private Ticket ticket_1_updated = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "terry", "Terraform init", "sdbdjbdjbdbd", false);
-	private Ticket ticket_2 = new Ticket(2L, "trainee2", "cnejan", "frontend", "Reece", "react", "React issue", false);
-	private Ticket ticket_3 = new Ticket(3L, "Aadil", "FebCNative", "terraform", "Vinesh", "jenkins", "sdbdjbdjbdbd", true);
-	private Ticket ticket_4 = new Ticket(4L, "Haydon", "FebCNative", "GCP", "reece", "Security rules", "sdbdjbdjbdbd", false);
+	private Ticket ticket_1 = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init","time","React issue", false);
+	private Ticket ticket_1_updated = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "terry", "Terraform init", "time","sdbdjbdjbdbd", false);
+	private Ticket ticket_2 = new Ticket(2L, "trainee2", "cnejan", "frontend", "Reece", "react","time" ,"React issue", false);
+	private Ticket ticket_3 = new Ticket(3L, "Aadil", "FebCNative", "terraform", "Vinesh", "jenkins", "time","sdbdjbdjbdbd", true);
+	private Ticket ticket_4 = new Ticket(4L, "Haydon", "FebCNative", "GCP", "reece", "Security rules", "time","sdbdjbdjbdbd", false);
 	
 	
 	@Test
 	public void testCreate() {
-		Assertions.assertThat(this.service.create(new Ticket("Haydon", "FebCNative", "GCP", "reece", "Security rules", "sdbdjbdjbdbd"))).isEqualTo(ticket_4);
+		Assertions.assertThat(this.service.create(new Ticket("Haydon", "FebCNative", "GCP", "reece", "Security rules","time","sdbdjbdjbdbd"))).isEqualTo(ticket_4);
 		this.service.deleteTicket(4L);
 	}
 	
@@ -98,7 +98,7 @@ public class TicketServiceIntegrationTests {
 	
 	@Test
 	void testToggleCompleted() {
-		Assertions.assertThat(this.service.toggleCompleted(1L)).isEqualTo(new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "React issue", true));
+		Assertions.assertThat(this.service.toggleCompleted(1L)).isEqualTo(new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init","time" ,"React issue", true));
 	}
 	
 	@Test

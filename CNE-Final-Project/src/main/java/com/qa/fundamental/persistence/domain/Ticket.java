@@ -38,6 +38,9 @@ public class Ticket {
 	private String title;
 	
 	@Column
+	private String dateTime;
+	
+	@Column
 	@NotNull
 	private String _description;
 	
@@ -45,17 +48,34 @@ public class Ticket {
 	private boolean completed;
 
 
-	public Ticket(String trainee, String cohort, String topic, String trainer, String title,
-			String description) {
+	public Ticket(String trainee, String cohort, String topic, String trainer, String title, String dateTime,
+			String _description) {
 		super();
 		this.trainee = trainee;
 		this.cohort = cohort;
 		this.topic = topic;
 		this.trainer = trainer;
 		this.title = title;
-		this._description = description;
+		this.dateTime = dateTime;
+		this._description = _description;
 		this.completed = false;
 	}
+
+
+	public Ticket(String trainee, String cohort, String topic, String trainer, String title, String dateTime,
+			String _description, boolean completed) {
+		super();
+		this.trainee = trainee;
+		this.cohort = cohort;
+		this.topic = topic;
+		this.trainer = trainer;
+		this.title = title;
+		this.dateTime = dateTime;
+		this._description = _description;
+		this.completed = completed;
+	}
+	
+	
 	
 	
 

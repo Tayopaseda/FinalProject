@@ -9,5 +9,6 @@ CREATE TABLE ticket (
     topic VARCHAR(255),
     completed BOOLEAN,
     trainer VARCHAR(255),
+    date_time VARCHAR(255),
     PRIMARY KEY(id)
 );
