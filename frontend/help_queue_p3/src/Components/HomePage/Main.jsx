@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner'
-// import Ticket from '../TicketComponent/Ticket';
 import axios from 'axios';
-import { Button, Card, CardColumns, Col, Container, Row } from 'react-bootstrap';
+import {Col, Container, Row } from 'react-bootstrap';
 import OpenTickets from '../TicketComponent/OpenTickets';
 import ClosedTickets from '../TicketComponent/ClosedTickets';
+import CreateTicket from '../TicketComponent/CreateTicket';
 
  const Main = () => {
 
@@ -66,12 +66,8 @@ import ClosedTickets from '../TicketComponent/ClosedTickets';
             
             <>
             <Container>
-            <Button
-                variant="success"
-                >Create Ticket
-            </Button>
-            <br/>
-            <br/>
+
+            <CreateTicket/>
 
             <Row>
                 <Col>
