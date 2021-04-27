@@ -2,6 +2,7 @@ package com.qa.fundamental.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.After;
@@ -59,8 +60,50 @@ public class TicketServiceIntegrationTests {
 		Assertions.assertThat(this.service.readAllCompleted()).isEqualTo(test_tickets);
 	}
 	
+	@Test
+	void testReadByQueuedCohort() {
+		List<Ticket> test_tickets = new ArrayList<Ticket>();
+		test_tickets.add(ticket_2);
+		Assertions.assertThat(this.service.readByQueuedCohort("cnejan")).isEqualTo(test_tickets);
+	}
 	
 	
+	@Test
+	void testReadByCompletedCohort() {
+		List<Ticket> test_tickets = new ArrayList<Ticket>();
+		test_tickets.add(ticket_3);
+		Assertions.assertThat(this.service.readByCompletedCohort("FebCNative")).isEqualTo(test_tickets);
+	}
+	
+	@Test
+	void testReadByQueuedTopic() {
+		List<Ticket> test_tickets = new ArrayList<Ticket>();
+		test_tickets.add(ticket_1);
+		Assertions.assertThat(this.service.readQueuedByTopic("terraform")).isEqualTo(test_tickets);
+	}
+	
+	@Test
+	void testReadByCompletedTopic() {
+		List<Ticket> test_tickets = new ArrayList<Ticket>();
+		test_tickets.add(ticket_3);
+		Assertions.assertThat(this.service.readCompletedByTopic("terraform")).isEqualTo(test_tickets);
+	}
+	
+	
+	@Test
+    void testDeleteById() {
+	   Assertions.assertThat(this.service.deleteTicket(1L)).isEqualTo(true);
+   }
+	
+	@Test
+	void testToggleCompleted() {
+		Assertions.assertThat(this.service.toggleCompleted(1L)).isEqualTo(new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "React issue", true));
+	}
+	
+	@Test
+	void testGetById() {
+		Assertions.assertThat(this.service.getById(1L)).isEqualTo(ticket_1);
+	}
 	
 	
 	
