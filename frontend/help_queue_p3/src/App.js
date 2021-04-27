@@ -1,8 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import Banner from "./Components/HomePage/Banner";
+import Main from "./Components/HomePage/Main";
+
 
 function App() {
-  return ();
+  return (
+    <>
+    <Banner/>
+    <Main/>
+    </>
+  );
 }
 
 export default App;
