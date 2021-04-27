@@ -54,13 +54,13 @@ public class TicketController {
 		return ResponseEntity.ok(this.service.readAllCompleted()); 
 	}
 	
-	@GetMapping("/readCompleted/cohort")
-	public ResponseEntity<List<Ticket>> readCompletedByCohort(@RequestBody String cohort){
+	@GetMapping("/readCompleted/Cohort/{cohort}")
+	public ResponseEntity<List<Ticket>> readByCompletedCohort(@PathVariable String cohort){
 		return ResponseEntity.ok(this.service.readByCompletedCohort(cohort)); 
 	}
 	
-	@GetMapping("/readQueued/cohort")
-	public ResponseEntity<List<Ticket>> readQueuedByCohort(@RequestBody String cohort){
+	@GetMapping("/readQueued/Cohort/{cohort}")
+	public ResponseEntity<List<Ticket>> readByQueuedCohort(@PathVariable String cohort){
 		return ResponseEntity.ok(this.service.readByQueuedCohort(cohort)); 
 	}
 	
@@ -75,7 +75,7 @@ public class TicketController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Ticket> delteById(@PathVariable Long id) {
+	public ResponseEntity<Ticket> deleteById(@PathVariable Long id) {
 		
 		if (this.service.deleteTicket(id)) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -88,6 +88,13 @@ public class TicketController {
 		Ticket new_ticket = this.service.toggleCompleted(id);
 		return new ResponseEntity<Ticket>(new_ticket, HttpStatus.CREATED);
 	}
+	
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Ticket> updateById(@PathVariable Long id, @RequestBody Ticket ticket){
+		Ticket new_ticket = this.service.updateById(id, ticket);
+		return new ResponseEntity<Ticket>(new_ticket, HttpStatus.CREATED);
+	}
+	
 	
 	
 }
