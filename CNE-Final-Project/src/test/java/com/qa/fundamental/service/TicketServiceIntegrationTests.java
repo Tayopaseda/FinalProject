@@ -34,6 +34,7 @@ public class TicketServiceIntegrationTests {
 	
 	
 	private Ticket ticket_1 = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "React issue", false);
+	private Ticket ticket_1_updated = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "terry", "Terraform init", "sdbdjbdjbdbd", false);
 	private Ticket ticket_2 = new Ticket(2L, "trainee2", "cnejan", "frontend", "Reece", "react", "React issue", false);
 	private Ticket ticket_3 = new Ticket(3L, "Aadil", "FebCNative", "terraform", "Vinesh", "jenkins", "sdbdjbdjbdbd", true);
 	private Ticket ticket_4 = new Ticket(4L, "Haydon", "FebCNative", "GCP", "reece", "Security rules", "sdbdjbdjbdbd", false);
@@ -105,6 +106,9 @@ public class TicketServiceIntegrationTests {
 		Assertions.assertThat(this.service.getById(1L)).isEqualTo(ticket_1);
 	}
 	
-	
+	@Test
+	void testUpdateById() {
+		Assertions.assertThat(this.service.updateById(1L, ticket_1_updated)).isEqualTo(ticket_1_updated);
+	}
 	
 }

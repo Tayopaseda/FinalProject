@@ -27,6 +27,7 @@ public class TicketServiceUnitTests {
 	private TicketRepo repo;
 	
 	private Ticket ticket_1 = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "sdbdjbdjbdbd", false);
+	private Ticket ticket_1_updated = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "terry", "Terraform init", "sdbdjbdjbdbd", false);
 	private Ticket ticket_2 = new Ticket(2L, "Tayo", "Software", "ansible", "aswene", "ansible galaxy", "sdbdjbdjbdbd", false);
 	private Ticket ticket_3 = new Ticket(3L, "Aadil", "FebCNative", "terraform", "Vinesh", "jenkins", "sdbdjbdjbdbd", true);
 	private Ticket ticket_4 = new Ticket(4L, "Haydon", "FebCNative", "GCP", "reece", "Security rules", "sdbdjbdjbdbd", false);
@@ -124,6 +125,15 @@ public class TicketServiceUnitTests {
 		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
 	}
 	
+	@Test
+	void testUpdateById() {
+		Optional<Ticket> op = Optional.ofNullable(ticket_1);
+		Mockito.when(this.repo.findById(1L)).thenReturn(op);
+		Mockito.when(this.repo.save(ticket_1_updated)).thenReturn(ticket_1_updated);
+		Assertions.assertThat(this.service.updateById(1L, ticket_1_updated)).isEqualTo(ticket_1_updated);
+		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
+		Mockito.verify(this.repo, Mockito.times(1)).save(ticket_1_updated);
+	}
 	
 	
 }
