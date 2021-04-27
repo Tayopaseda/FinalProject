@@ -63,4 +63,15 @@ public class TicketService {
 		Optional<Ticket> ticket = this.repo.findById(id);
 		return ticket.get();
 	}
+	
+	public Ticket updateById(Long id, Ticket ticket) {
+		Ticket old = this.repo.findById(id).get();
+		old.set_description(ticket.get_description());
+		old.setCohort(ticket.getCohort());
+		old.setTitle(ticket.getTitle());
+		old.setTopic(ticket.getTopic());
+		old.setTrainee(ticket.getTrainee());
+		old.setTrainer(ticket.getTrainer());
+		return this.repo.save(old);
+	}
 }
