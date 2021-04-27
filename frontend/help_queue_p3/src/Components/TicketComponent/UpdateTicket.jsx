@@ -30,8 +30,7 @@ const EditTicketButton = ({
     trainer: trainer,
     priority: urgency,
     cohort: cohort,
-    timestamp: timestamp,
-    author: oldName,
+    Trainee: oldName,
   };
 
 
