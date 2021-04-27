@@ -41,11 +41,11 @@ public class TicketControllerIntegrationTest {
 	private ObjectMapper mapper;
 	
 	
-	private Ticket ticket_1 = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init","React issue", false);
-	private Ticket ticket_1_updated = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "terry", "Terraform init", "sdbdjbdjbdbd", false);
-	private Ticket ticket_2 = new Ticket(2L, "trainee2", "cnejan", "frontend", "Reece", "react", "React issue", false);
-	private Ticket ticket_3 = new Ticket(3L, "Aadil", "FebCNative", "terraform", "Vinesh", "jenkins", "sdbdjbdjbdbd", true);
-	private Ticket ticket_4 = new Ticket(4L, "Haydon", "FebCNative", "GCP", "reece", "Security rules", "sdbdjbdjbdbd", false);
+	private Ticket ticket_1 = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init","time","React issue", false);
+	private Ticket ticket_1_updated = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "terry", "Terraform init","time", "sdbdjbdjbdbd", false);
+	private Ticket ticket_2 = new Ticket(2L, "trainee2", "cnejan", "frontend", "Reece", "react", "time","React issue", false);
+	private Ticket ticket_3 = new Ticket(3L, "Aadil", "FebCNative", "terraform", "Vinesh", "jenkins","time", "sdbdjbdjbdbd", true);
+	private Ticket ticket_4 = new Ticket(4L, "Haydon", "FebCNative", "GCP", "reece", "Security rules","time", "sdbdjbdjbdbd", false);
 	
 	
 	
@@ -169,14 +169,14 @@ public class TicketControllerIntegrationTest {
 	@Test
 	void testCompletedTicket() throws Exception {
 		Long id = 1L;
-		Ticket updatedTicket = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "React issue", false);
+		Ticket updatedTicket = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "time","React issue", false);
 		String requestBody = this.mapper.writeValueAsString(updatedTicket);
 		RequestBuilder request = put("/ticket/completed/" + id).contentType(MediaType.APPLICATION_JSON)
 				.content(requestBody);
 
 		ResultMatcher checkStatus = status().isCreated();
 
-		Ticket returnedTicket = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "React issue", true);
+		Ticket returnedTicket = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init", "time","React issue", true);
 		ticket_1.setId(id);
 
 		String resultBody = this.mapper.writeValueAsString(returnedTicket);
