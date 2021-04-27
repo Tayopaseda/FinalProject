@@ -197,7 +197,7 @@ public class TicketControllerIntegrationTest {
 		RequestBuilder request = put("/ticket/update/" + id).contentType(MediaType.APPLICATION_JSON)
 				.content(requestBody);
 
-		ResultMatcher checkStatus = status().isAccepted();
+		ResultMatcher checkStatus = status().isCreated();
 
 		String resultBody = this.mapper.writeValueAsString(ticket_1_updated);
 		ResultMatcher checkBody = content().json(resultBody);
