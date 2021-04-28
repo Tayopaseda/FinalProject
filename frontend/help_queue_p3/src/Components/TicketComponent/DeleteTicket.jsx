@@ -1,10 +1,20 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Row, Col, Container } from "react-bootstrap";
-
+import React from "react";
+import Avatar from "react-avatar";
+import { Col, Row, Button, Card, Accordion } from "react-bootstrap";
+import * as Icon from "react-bootstrap-icons";
+const DeleteTicket = ({
+  id,
+  title,
+  trainee,
+  trainer,
+  cohort,
+  description,
+  topic,
+}) => {
 const deleteTicket = (e) => {
     console.log("delete ticket info");
-    axios.delete("/deleteTicket/", {
+    axios.delete("/delete/" + id, {
       headers: {
         'Access-Control-Allow-Origin' : '*'
         }
@@ -17,4 +27,6 @@ const deleteTicket = (e) => {
       }
     );
   };
-  export default deleteTicket;
+}
+
+  export default DeleteTicket;

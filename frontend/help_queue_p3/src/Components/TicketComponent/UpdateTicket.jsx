@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Row, Col, Container } from "react-bootstrap";
 
-const EditTicketButton = ({
-  oldName,
+const UpdateTicket = ({
+  id,
+  oldTitle,
+  traineeName,
   oldTrainer,
-  oldUrgency,
   oldCohort,
-  oldDesc,
+  oldDescription,
   oldTopic,
 }) => {
   const [show, setShow] = useState(false);
@@ -15,28 +16,28 @@ const EditTicketButton = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [cohort, setcohort] = useState(oldCohort);
-  const [trainer, settrainer] = useState(oldTrainer);
-  const [title, settitle] = useState(oldName);
-  const [issue, setissue] = useState(oldDesc);
-  const [topic, settopic] = useState(oldTopic);
-  const [urgency, seturgency] = useState(oldUrgency);
+  const [title, setTitle] = useState(oldTitle);
+  const [trainee, setTrainee] = useState(traineeName);
+  const [trainer, setTrainer] = useState(oldTrainer);
+  const [cohort, setCohort] = useState(oldCohort);
+  const [description, setDscription] = useState(oldDescription);
+  const [topic, setTopic] = useState(oldTopic);
+  const [time, setTime] = useState(
+    new Date().toLocaleString('en-GB')
+  );
 
-  const ticketData = {
+  const ticketValues = {
     title: title,
-    topic: topic,
-    content: issue,
-    status: status,
+    trainee: traineeName,
     trainer: trainer,
-    priority: urgency,
+    topic: topic,
+    description: description,
     cohort: cohort,
-    Trainee: oldName,
+    dateTime: time,
   };
-
-
-
-const updateTicket = (e) => {
-    axios.put("/updateTicket/",  {
+  
+const update = (e) => {
+    axios.put("/update/" + id, ticketValues,  {
       headers: {
         'Access-Control-Allow-Origin' : '*'
         }
@@ -48,5 +49,7 @@ const updateTicket = (e) => {
         console.log();
         console.log(error);
       });
+      
   };
-  export default updateTicket;
+}
+export default UpdateTicket;

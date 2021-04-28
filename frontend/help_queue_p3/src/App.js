@@ -1,8 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import Main from "./Components/HomePage/Main";
+
 
 function App() {
-  return ();
+  return (
+    <>
+    <Main/>
+    </>
+  );
 }
 
 export default App;
