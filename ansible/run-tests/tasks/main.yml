@@ -4,31 +4,29 @@
   shell: echo {{password}} | docker login --username={{username}} --password-stdin
 
 - name: 'pull docker images'
-  shell: docker pull {{username}}/frontend:test && docker pull {{username}}/backend:test
+  shell: docker pull {{username}}/backend:test
   
 - name: 'create bridge network for containers'
   shell: docker network create app-network
 
 - name: 'run containers'
-  shell: docker run --network app-network -d --name backend {{username}}/backend:test && docker run --network app-network -d --name frontend {{username}}/frontend:test
+  shell: docker run --network app-network -d --name backend {{username}}/backend:test
 
-#- name: 'run frontend tests'
-#  shell: docker exec frontend bash -c "pytest tests/ --cov=application" > frontend-tests.txt
+- name: 'get controller test results'
+  shell: mkdir Tests && docker exec backend cat /opt/app/com.qa.fundamental.rest.TicketControllerIntegrationTest.txt > Tests/TicketControllerIntegrationTest.txt
 
-#- name: 'run backend tests'
-#  shell: docker exec backend bash -c "pytest tests/ --cov=application" > backend-tests.txt
+- name: 'get service unit test results'
+  shell: docker exec backend cat /opt/app/com.qa.fundamental.service.TicketServiceUnitTests.txt > Tests/TicketServiceUnitTests.txt
+
+- name: 'get service integration test results'
+  shell: docker exec backend cat /opt/app/com.qa.fundamental.service.TicketServiceIntegrationTests.txt > Tests/TicketServiceIntegrationTests.txt          
+
+- name: 'save backend tests'
+  fetch: 
+    src: /home/ubuntu/Tests/
+    dest: /home/jenkins/.jenkins/workspace/CD/Tests/ 
+    flat: yes
 
 - name: 'delete containers and images'
-  shell: docker stop frontend backend && docker rm backend frontend && docker rmi -f {{username}}/backend:test {{username}}/frontend:test && docker network rm app-network 
+  shell: docker stop backend && docker rm backend && docker rmi -f {{username}}/backend:test && docker network rm app-network 
   
-- name: 'save frontend tests to jenkins'
-  fetch:
-    src: /home/ubuntu/frontend-tests.txt
-    dest: /home/jenkins/.jenkins/workspace/CD/
-    flat: yes
-
-- name: 'save backend tests to jenkins'
-  fetch:
-    src: /home/ubuntu/backend-tests.txt
-    dest: /home/jenkins/.jenkins/workspace/CD/
-    flat: yes
