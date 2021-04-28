@@ -36,7 +36,8 @@ const UpdateTicket = ({
     dateTime: time,
   };
   
-const update = (e) => {
+const updateData = (e) => {
+    setTime(new Date().toLocaleString("en-GB"))
     axios.put("/update/" + id, ticketValues,  {
       headers: {
         'Access-Control-Allow-Origin' : '*'
