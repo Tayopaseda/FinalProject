@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import axios from "axios";
 import { Button, Modal, Form} from "react-bootstrap";
 
@@ -26,7 +26,7 @@ const CreateTicket = () => {
         trainee: traineeName,
         cohort: cohort,
         trainer: trainer,
-        description: description,
+        _description: description,
         dateTime: time,
     };
 

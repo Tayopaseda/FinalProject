@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Row, Col, Container, Button, Modal, Form } from "react-bootstrap";
+import {Button, Modal, Form } from "react-bootstrap";
 
 const UpdateTicket = ({
   id,
@@ -26,19 +26,23 @@ const UpdateTicket = ({
     new Date().toLocaleString('en-GB')
   );
 
-  const ticketValues = {
-    title: title,
-    trainee: traineeName,
-    trainer: trainer,
-    topic: topic,
-    description: description,
-    cohort: cohort,
-    dateTime: time,
-  };
-  
 const updateData = (e) => {
+    e.preventDefault();
+
+    const ticketValues = {
+        title: title,
+        trainee: traineeName,
+        trainer: trainer,
+        topic: topic,
+        _description: description,
+        cohort: cohort,
+        dateTime: time,
+      };
+    
+    //   console.log(ticketValues);
+      
     setTime(new Date().toLocaleString("en-GB"))
-    axios.put("/update/" + id, ticketValues,  {
+    axios.put("http://localhost:8080/ticket/update/" + id, ticketValues,  {
       headers: {
         'Access-Control-Allow-Origin' : '*'
         }
@@ -61,7 +65,7 @@ const updateData = (e) => {
         <Button 
         variant="info" 
         onClick={handleShow}
-        >
+        > Update
         </Button>
 
         <Modal
@@ -74,12 +78,12 @@ const updateData = (e) => {
                 <Modal.Title>Edit Ticket Modal</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form>
+                <Form onSubmit={updateData}>
                     <Form.Group>
                         <Form.Label>Trainee Name</Form.Label>
                         <Form.Control
                             type="text"
-                            defaultValue={oldTraineeName}
+                            value={traineeName}
                             placeholder="Trainee Name"
                             onChange={(i) => {
                                 setTrainee(i.target.value);
@@ -91,6 +95,7 @@ const updateData = (e) => {
                         <Form.Label>Cohort</Form.Label>
                         <Form.Control
                             as="select"
+                            value={cohort}
                             onChange={(i) => {
                                 setCohort(i.target.value);
                             }}
@@ -105,10 +110,16 @@ const updateData = (e) => {
                         <Form.Label>Topics</Form.Label>
                         <Form.Control
                             as="select"
+                            value={topic}
                             onChange={(i) => {
                                 setTopic(i.target.value);
                             }}
                         >
+                            <option>FrontEnd</option>
+                            <option>BackEnd</option>
+                            <option>DevOps</option>
+                            <option>Cloud Fundamentals</option>
+
                         </Form.Control>
                     </Form.Group>
 
@@ -116,6 +127,7 @@ const updateData = (e) => {
                         <Form.Label>Trainer</Form.Label>
                         <Form.Control
                             as="select"
+                            value={trainer}
                             onChange={(i)=>{
                                 setTrainer(i.target.value);
                             }}
@@ -132,7 +144,7 @@ const updateData = (e) => {
                         <Form.Label>Title</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder={oldTopic}
+                            value={title}
                             onChange={(i) => {
                                 setTitle(i.target.value);
                             }}
@@ -144,7 +156,7 @@ const updateData = (e) => {
                         <Form.Control
                             as="textarea"
                             rows={5}
-                            placeholder={oldDescription}
+                            value={description}
                             onChange={(i) => {
                                 setDescription(i.target.value);
                             }}
@@ -153,7 +165,8 @@ const updateData = (e) => {
                 </Form>
 
                 <Button
-                    onClick={(i) => updateData(i)}
+                    onClick = {updateData}
+                    type="submit"
                     variant="success"
                     size="lg"
                     block
