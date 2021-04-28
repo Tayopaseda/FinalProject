@@ -1,4 +1,5 @@
 import Card from 'react-bootstrap/Card';
+import ViewTickets from './ViewTickets';
 
 const ClosedTickets = ({closedTicket}) => {
     console.log(closedTicket);
@@ -12,8 +13,16 @@ const ClosedTickets = ({closedTicket}) => {
         <Card.Text>
             <small className="text-muted">Logged: {closedTicket.dateTime}</small>
         </Card.Text>
-        <Card.Link href="#">View</Card.Link>
-        <Card.Link href="#">Delete</Card.Link>
+        <ViewTickets
+            id={closedTicket.id}
+            title={closedTicket.title}
+            traineeName={closedTicket.trainee}
+            trainer={closedTicket.trainer}
+            cohort={closedTicket.cohort}
+            description={closedTicket._description}
+            topic={closedTicket.topic}
+            completed={closedTicket.completed}
+            />
     </Card.Body>
 </Card>
 

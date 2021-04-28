@@ -16,11 +16,12 @@ import CreateTicket from '../TicketComponent/CreateTicket';
 
     useEffect(() => {
         fetchOpenQueue();
-    }, []);
-
-    useEffect(() => {
         fetchClosedQueue();
-    }, []);
+    },[]);
+
+    // useEffect(() => {
+    //     fetchClosedQueue();
+    // }, []);
 
     const fetchOpenQueue =()=>{
         axios

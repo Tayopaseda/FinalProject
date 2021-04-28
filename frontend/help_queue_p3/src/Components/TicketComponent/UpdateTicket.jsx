@@ -47,10 +47,10 @@ const updateData = (e) => {
         'Access-Control-Allow-Origin' : '*'
         }
     })
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log();
         console.log(error);
       });
