@@ -8,5 +8,11 @@ pipeline {
         }
       }
     }
+    stage('building cluster') {
+      steps {
+        sh './scripts/create_cluster.sh'
+      }
+    }  
   }
 }
+
