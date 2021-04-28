@@ -23,7 +23,7 @@ resource "aws_db_instance" "prod-db" {
   allocated_storage = 20
   engine = "mysql"
   instance_class = "db.t2.micro"
-  name = "users"
+  name = "ticket"
   username = var.username
   password = var.password
   db_subnet_group_name = aws_db_subnet_group.rds.id
