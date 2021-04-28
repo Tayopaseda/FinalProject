@@ -7,28 +7,19 @@ import axios from "axios";
 const DeleteTicket = ({
   id,
   title,
-  trainee,
+  traineeName,
   trainer,
   cohort,
   description,
-  topic,
+  topic
 }) => {
+  
+  
 
-const deleteTicket = (e) => {
-    console.log("delete ticket info");
-    axios.delete("/delete/" + id, {
-      headers: {
-        'Access-Control-Allow-Origin' : '*'
-        }
-    }).then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  };
+
+
+
 }
+
 
   export default DeleteTicket;

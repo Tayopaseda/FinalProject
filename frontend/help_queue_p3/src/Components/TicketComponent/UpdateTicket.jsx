@@ -9,7 +9,7 @@ const UpdateTicket = ({
   oldTrainer,
   oldCohort,
   oldDescription,
-  oldTopic,
+  oldTopic
 }) => {
   const [show, setShow] = useState(false);
 
@@ -63,7 +63,7 @@ const updateData = (e) => {
 
     <>
         <Button 
-        variant="info" 
+        variant="secondary" 
         onClick={handleShow}
         > Update
         </Button>

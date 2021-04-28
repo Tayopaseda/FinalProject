@@ -15,7 +15,15 @@ const OpenTickets = ({openTicket}) => {
         <Card.Text>
             <small className="text-muted">Logged: {openTicket.dateTime}</small>
         </Card.Text>
-        <Button variant="primary">View</Button>
+        <ViewTickets
+            id={openTicket.id}
+            title={openTicket.title}
+            traineeName={openTicket.trainee}
+            trainer={openTicket.trainer}
+            cohort={openTicket.cohort}
+            description={openTicket._description}
+            topic={openTicket.topic}
+            />
         <UpdateTicket
             id = {openTicket.id}
             oldTitle = {openTicket.title}
