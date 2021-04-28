@@ -15,8 +15,8 @@ const OpenTickets = ({openTicket}) => {
         <Card.Text>
             <small className="text-muted">Logged: {openTicket.dateTime}</small>
         </Card.Text>
-        <Button variant="primary">View <ViewTickets/></Button>
-        <Button variant="danger">Delete <DeleteTicket/></Button>
+        <Button variant="primary">View</Button>
+        <Button variant="danger">Delete</Button>
     </Card.Body>
 </Card>
 

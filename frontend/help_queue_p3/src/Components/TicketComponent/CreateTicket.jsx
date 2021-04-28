@@ -68,7 +68,7 @@ const CreateTicket = () => {
                                 type="text"
                                 placeholder="Trainee Name"
                                 onChange={(i) => {
-                                    setTraineeName(i.target.value)
+                                    setTraineeName(i.target.value);
                                 }}
                             />
                         </Form.Group>
@@ -78,7 +78,7 @@ const CreateTicket = () => {
                             <Form.Control
                                 as="select"
                                 onChange={(i) => {
-                                    setCohort(i.target.value)
+                                    setCohort(i.target.value);
                                     }}
                             >
                                 <option>CloudNative</option>                        
@@ -92,7 +92,7 @@ const CreateTicket = () => {
                             <Form.Control
                                 as="select"
                                 onChange={(i) => {
-                                    setTopic(i.target.value)
+                                    setTopic(i.target.value);
                                 }}
                             >
                                 <option>FrontEnd</option>
@@ -107,7 +107,7 @@ const CreateTicket = () => {
                             <Form.Control
                                 as="select"
                                 onChange={(i) => {
-                                    setTrainer(i.target.value)
+                                    setTrainer(i.target.value);
                                 }}
                             >
                                 <option>Vinesh Ghela</option>
@@ -124,7 +124,7 @@ const CreateTicket = () => {
                                 type="text"
                                 placeholder="Topic issue"
                                 onChange={(i)=> {
-                                    setTitle(i.target.value)
+                                    setTitle(i.target.value);
                                 }}
                             />
                         </Form.Group>

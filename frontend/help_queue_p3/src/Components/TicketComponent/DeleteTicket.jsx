@@ -1,8 +1,9 @@
 import axios from "axios";
-import React from "react";
-import Avatar from "react-avatar";
-import { Col, Row, Button, Card, Accordion } from "react-bootstrap";
-import * as Icon from "react-bootstrap-icons";
+// import React from "react";
+// import Avatar from "react-avatar";
+// import { Col, Row, Button, Card, Accordion } from "react-bootstrap";
+// import * as Icon from "react-bootstrap-icons";
+
 const DeleteTicket = ({
   id,
   title,
@@ -12,6 +13,7 @@ const DeleteTicket = ({
   description,
   topic,
 }) => {
+
 const deleteTicket = (e) => {
     console.log("delete ticket info");
     axios.delete("/delete/" + id, {
