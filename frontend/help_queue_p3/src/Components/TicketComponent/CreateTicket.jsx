@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Modal, Form} from "react-bootstrap";
 
@@ -29,7 +29,6 @@ const CreateTicket = () => {
         description: description,
         dateTime: time,
     };
-
 
     const sendData = (i) => {
         const newDate = new Date().toLocaleString('en-GB')

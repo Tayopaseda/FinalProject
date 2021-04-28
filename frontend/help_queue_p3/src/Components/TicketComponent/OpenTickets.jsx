@@ -1,4 +1,7 @@
+import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
+import DeleteTicket from './DeleteTicket';
+import ViewTickets from './ViewTickets';
 
 const OpenTickets = ({openTicket}) => {
     console.log(openTicket);
@@ -12,8 +15,8 @@ const OpenTickets = ({openTicket}) => {
         <Card.Text>
             <small className="text-muted">Logged: {openTicket.dateTime}</small>
         </Card.Text>
-        <Card.Link href="#">View</Card.Link>
-        <Card.Link href="#">Delete</Card.Link>
+        <Button variant="primary">View <ViewTickets/></Button>
+        <Button variant="danger">Delete <DeleteTicket/></Button>
     </Card.Body>
 </Card>
 
