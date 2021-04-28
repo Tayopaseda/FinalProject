@@ -1,0 +1,34 @@
+---
+# tasks file for run-tests
+- name: 'docker login'
+  shell: echo {{password}} | docker login --username={{username}} --password-stdin
+
+- name: 'pull docker images'
+  shell: docker pull {{username}}/frontend:test && docker pull {{username}}/backend:test
+  
+- name: 'create bridge network for containers'
+  shell: docker network create app-network
+
+- name: 'run containers'
+  shell: docker run --network app-network -d --name backend {{username}}/backend:test && docker run --network app-network -d --name frontend {{username}}/frontend:test
+
+#- name: 'run frontend tests'
+#  shell: docker exec frontend bash -c "pytest tests/ --cov=application" > frontend-tests.txt
+
+#- name: 'run backend tests'
+#  shell: docker exec backend bash -c "pytest tests/ --cov=application" > backend-tests.txt
+
+- name: 'delete containers and images'
+  shell: docker stop frontend backend && docker rm backend frontend && docker rmi -f {{username}}/backend:test {{username}}/frontend:test && docker network rm app-network 
+  
+- name: 'save frontend tests to jenkins'
+  fetch:
+    src: /home/ubuntu/frontend-tests.txt
+    dest: /home/jenkins/.jenkins/workspace/CD/
+    flat: yes
+
+- name: 'save backend tests to jenkins'
+  fetch:
+    src: /home/ubuntu/backend-tests.txt
+    dest: /home/jenkins/.jenkins/workspace/CD/
+    flat: yes
