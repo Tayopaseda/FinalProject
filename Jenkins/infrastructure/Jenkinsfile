@@ -4,7 +4,7 @@ pipeline {
     stage('building infrastructure') {
       steps {
         withCredentials([string(credentialsId: 'database_user', variable: 'dbUser'), string(credentialsId: 'test_db_password', variable: 'dbPassword')]) {
-          sh './scripts/build_test_infrastructure.sh'
+          sh './scripts/build_infrastructure.sh'
         }
       }
     }
