@@ -4,7 +4,6 @@ import { Button } from "react-bootstrap";
 // import Avatar from "react-avatar";
 // import { Col, Row, Button, Card, Accordion } from "react-bootstrap";
 // import * as Icon from "react-bootstrap-icons";
-
 const DeleteTicket = ({
   id,
   title,
