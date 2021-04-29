@@ -6,6 +6,7 @@ trainer,
 title,
 date_time,
 _description,
+solution,
 completed)
 
 VALUES
@@ -16,6 +17,7 @@ VALUES
 'Terraform init',
 'time',
 'React issue',
+'solution'
 false),
 ('trainee2',
 'cnejan',
@@ -24,6 +26,7 @@ false),
 'react',
 'time',
 'React issue',
+'solution',
 false),
 ('Aadil',
 'FebCNative',
@@ -32,4 +35,5 @@ false),
 'jenkins',
 'time',
 'sdbdjbdjbdbd',
+'solution',
 true);

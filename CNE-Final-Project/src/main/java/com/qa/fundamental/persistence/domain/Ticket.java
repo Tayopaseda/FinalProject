@@ -45,11 +45,14 @@ public class Ticket {
 	private String _description;
 	
 	@Column
+	private String solution;
+	
+	@Column
 	private boolean completed;
 
 
 	public Ticket(String trainee, String cohort, String topic, String trainer, String title, String dateTime,
-			String _description) {
+			String _description,String solution) {
 		super();
 		this.trainee = trainee;
 		this.cohort = cohort;
@@ -58,12 +61,13 @@ public class Ticket {
 		this.title = title;
 		this.dateTime = dateTime;
 		this._description = _description;
+		this.solution = solution;
 		this.completed = false;
 	}
 
 
 	public Ticket(String trainee, String cohort, String topic, String trainer, String title, String dateTime,
-			String _description, boolean completed) {
+			String _description,String solution,boolean completed) {
 		super();
 		this.trainee = trainee;
 		this.cohort = cohort;
@@ -72,6 +76,7 @@ public class Ticket {
 		this.title = title;
 		this.dateTime = dateTime;
 		this._description = _description;
+		this.solution = solution;
 		this.completed = completed;
 	}
 	
