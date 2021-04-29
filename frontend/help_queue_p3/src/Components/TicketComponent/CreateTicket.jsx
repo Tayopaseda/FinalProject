@@ -35,7 +35,7 @@ const CreateTicket = () => {
     setTime(newDate);
 
     axios
-        .post(`http://localhost:8080/ticket/create`, ticketValues)
+        .post(`http://backend:8080/ticket/create`, ticketValues)
         .then(function (response) {
            console.log(response);
         })

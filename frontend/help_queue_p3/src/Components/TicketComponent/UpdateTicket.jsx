@@ -42,7 +42,7 @@ const updateData = (e) => {
     //   console.log(ticketValues);
       
     setTime(new Date().toLocaleString("en-GB"))
-    axios.put("http://localhost:8080/ticket/update/" + id, ticketValues,  {
+    axios.put("http://backend:8080/ticket/update/" + id, ticketValues,  {
       headers: {
         'Access-Control-Allow-Origin' : '*'
         }
