@@ -12,7 +12,7 @@ pipeline {
       steps {
         withCredentials([string(credentialsId: 'docker_password', variable: 'dockerPassword'), string(credentialsId: 'docker_username', variable: 'dockerUsername'), string(credentialsId: 'database_user', variable: 'dbUser'), string(credentialsId: 'test_db_password', variable: 'dbPassword')]) {
           sh './scripts/tests.sh'
-          archiveArtifacts artifacts: '../Tests/*.txt', fingerprint: true, followSymlinks: false
+          archiveArtifacts artifacts: 'Tests/*.txt', fingerprint: true, followSymlinks: false
         }
       }
     }
