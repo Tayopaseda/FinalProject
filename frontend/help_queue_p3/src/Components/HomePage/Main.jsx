@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner'
 import axios from 'axios';
-import {Col, Container, Row } from 'react-bootstrap';
+import {Button, Col, Container, Row } from 'react-bootstrap';
 import OpenTickets from '../TicketComponent/OpenTickets';
 import ClosedTickets from '../TicketComponent/ClosedTickets';
 import CreateTicket from '../TicketComponent/CreateTicket';
@@ -13,14 +13,30 @@ import CreateTicket from '../TicketComponent/CreateTicket';
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
 
-
-    useEffect(() => {
-        fetchOpenQueue();
-    }, []);
-
-    useEffect(() => {
+    const refreshData=()=>{
+        fetchOpenQueue()
         fetchClosedQueue();
-    }, []);
+    }
+
+        // setTimeout(() => {
+        //     fetchOpenQueue();
+        //     fetchClosedQueue();
+        //     console.log('Page refreshed')
+        // }, 15000)
+
+    
+        useEffect(() => {
+            fetchOpenQueue();
+            fetchClosedQueue();
+         },[]);
+
+
+
+        // const timer = setTimeout(() => {
+        //     fetchOpenQueue();
+        //     fetchClosedQueue();
+        //     console.log('Page refreshed 10 seconds')
+        // }, 10000);
 
     const fetchOpenQueue =()=>{
         axios
@@ -65,6 +81,7 @@ import CreateTicket from '../TicketComponent/CreateTicket';
         return(
             
             <>
+            <Button onClick={refreshData}>Refresh</Button>
             <Container>
 
             <CreateTicket/>
