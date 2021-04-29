@@ -40,7 +40,7 @@ import CreateTicket from '../TicketComponent/CreateTicket';
 
     const fetchOpenQueue =()=>{
         axios
-        .get(`http://localhost:8080/ticket/readQueued`)
+        .get(`http://backend:8080/ticket/readQueued`)
         .then((response) => {
             setIsLoaded(true);
             setDataQueued(response.data);
@@ -53,7 +53,7 @@ import CreateTicket from '../TicketComponent/CreateTicket';
 
     const fetchClosedQueue =()=>{
         axios
-        .get(`http://localhost:8080/ticket/readCompleted`)
+        .get(`http://backend:8080/ticket/readCompleted`)
         .then((response) => {
             setIsLoaded(true);
             setDataCompleted(response.data);
