@@ -1,6 +1,6 @@
-import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import DeleteTicket from './DeleteTicket';
+import UpdateTicket from './UpdateTicket';
 import ViewTickets from './ViewTickets';
 
 const OpenTickets = ({openTicket}) => {
@@ -15,8 +15,28 @@ const OpenTickets = ({openTicket}) => {
         <Card.Text>
             <small className="text-muted">Logged: {openTicket.dateTime}</small>
         </Card.Text>
-        <Button variant="primary">View <ViewTickets/></Button>
-        <Button variant="danger">Delete <DeleteTicket/></Button>
+        <ViewTickets
+            id={openTicket.id}
+            title={openTicket.title}
+            traineeName={openTicket.trainee}
+            trainer={openTicket.trainer}
+            cohort={openTicket.cohort}
+            description={openTicket._description}
+            topic={openTicket.topic}
+            completed={openTicket.completed}
+            />
+        <UpdateTicket
+            id = {openTicket.id}
+            oldTitle = {openTicket.title}
+            oldTraineeName = {openTicket.title}
+            oldTrainer = {openTicket.trainer}
+            oldCohort = {openTicket.cohort}
+            oldDescription = {openTicket._description}
+            oldTopic = {openTicket.topic}
+            />
+        <DeleteTicket
+            id = {openTicket.id}
+            />
     </Card.Body>
 </Card>
 

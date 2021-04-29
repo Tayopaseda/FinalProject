@@ -1,30 +1,45 @@
 import axios from "axios";
-import React from "react";
-import { Col, Row, Button, Card, Accordion } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+// import React from "react";
+// import Avatar from "react-avatar";
+// import { Col, Row, Button, Card, Accordion } from "react-bootstrap";
+// import * as Icon from "react-bootstrap-icons";
 const DeleteTicket = ({
   id,
   title,
-  trainee,
+  traineeName,
   trainer,
   cohort,
   description,
-  topic,
+  topic
 }) => {
-const deleteTicket = (e) => {
-    console.log("delete ticket info");
-    axios.delete("/delete/" + id, {
+
+  const deleteData = (e) => {
+    axios
+    .delete("http://localhost:8080/ticket/delete/" + id, {
       headers: {
         'Access-Control-Allow-Origin' : '*'
         }
-    }).then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  };
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+  return(
+    <>
+    <Button
+    variant="danger"
+    onClick={deleteData}
+    > Delete </Button>
+    </>
+    )
+
+
 }
+
 
   export default DeleteTicket;
