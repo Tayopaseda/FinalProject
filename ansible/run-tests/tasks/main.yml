@@ -24,7 +24,7 @@
 - name: 'save backend tests'
   fetch: 
     src: /home/ubuntu/Tests/
-    dest: /home/jenkins/.jenkins/workspace/CD/Tests/ 
+    dest: /home/jenkins/.jenkins/workspace/CI/Tests/ 
     flat: yes
 
 - name: 'delete containers and images'
