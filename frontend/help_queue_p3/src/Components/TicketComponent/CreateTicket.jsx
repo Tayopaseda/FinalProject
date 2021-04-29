@@ -1,11 +1,15 @@
-import React, {useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Modal, Form} from "react-bootstrap";
 
 const CreateTicket = () => {
     
     const [show, setShow] = useState(false);
-
+    const [error, setError] = useState(`false`);
+    const [isLoaded, setLoaded] = useState(false);
+    const [ticketData, setTicketData] = useState([]);
+    const [isUpdate, setIsUpdate] = useState(true);
+    const [dataSort, setDataSort] = useState(`http://localhost:8080/ticket/create`);
     const handleClose=()=> setShow(false);
     const handleShow=()=> setShow(true);
 
@@ -26,7 +30,7 @@ const CreateTicket = () => {
         trainee: traineeName,
         cohort: cohort,
         trainer: trainer,
-        _description: description,
+        description: description,
         dateTime: time,
     };
 
@@ -44,6 +48,28 @@ const CreateTicket = () => {
         })
         handleClose();
     };
+
+    useEffect(() => {
+        setIsUpdate(false);
+        axios.get(dataSort, {
+          headers: {
+            'Access-Control-Allow-Origin' : '*'
+            }
+        }
+    )
+          .then(
+          (data) => {
+            setLoaded(true);
+            setError(false);
+            setTicketData(data.data);
+            console.log(ticketValues);
+          },
+          (error) => {
+            setLoaded(true);
+            setError(error);
+          }
+        );
+      }, [dataSort]);
 
     return(
         <>
@@ -68,7 +94,7 @@ const CreateTicket = () => {
                                 type="text"
                                 placeholder="Trainee Name"
                                 onChange={(i) => {
-                                    setTraineeName(i.target.value);
+                                    setTraineeName(i.target.value)
                                 }}
                             />
                         </Form.Group>
@@ -78,7 +104,7 @@ const CreateTicket = () => {
                             <Form.Control
                                 as="select"
                                 onChange={(i) => {
-                                    setCohort(i.target.value);
+                                    setCohort(i.target.value)
                                     }}
                             >
                                 <option>CloudNative</option>                        
@@ -92,7 +118,7 @@ const CreateTicket = () => {
                             <Form.Control
                                 as="select"
                                 onChange={(i) => {
-                                    setTopic(i.target.value);
+                                    setTopic(i.target.value)
                                 }}
                             >
                                 <option>FrontEnd</option>
@@ -107,7 +133,7 @@ const CreateTicket = () => {
                             <Form.Control
                                 as="select"
                                 onChange={(i) => {
-                                    setTrainer(i.target.value);
+                                    setTrainer(i.target.value)
                                 }}
                             >
                                 <option>Vinesh Ghela</option>
@@ -124,7 +150,7 @@ const CreateTicket = () => {
                                 type="text"
                                 placeholder="Topic issue"
                                 onChange={(i)=> {
-                                    setTitle(i.target.value);
+                                    setTitle(i.target.value)
                                 }}
                             />
                         </Form.Group>
@@ -156,5 +182,3 @@ const CreateTicket = () => {
 }
 
 export default CreateTicket ;
-
-
