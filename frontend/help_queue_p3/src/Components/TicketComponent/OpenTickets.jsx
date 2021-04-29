@@ -4,7 +4,7 @@ import UpdateTicket from './UpdateTicket';
 import ViewTickets from './ViewTickets';
 
 const OpenTickets = ({openTicket}) => {
-    console.log(openTicket);
+    // console.log(openTicket);
 
     return(
         

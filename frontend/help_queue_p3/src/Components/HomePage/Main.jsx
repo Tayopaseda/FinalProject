@@ -30,13 +30,7 @@ import CreateTicket from '../TicketComponent/CreateTicket';
             fetchClosedQueue();
          },[]);
 
-
-
-        // const timer = setTimeout(() => {
-        //     fetchOpenQueue();
-        //     fetchClosedQueue();
-        //     console.log('Page refreshed 10 seconds')
-        // }, 10000);
+        
 
     const fetchOpenQueue =()=>{
         axios
@@ -110,6 +104,7 @@ import CreateTicket from '../TicketComponent/CreateTicket';
             </Row>
 
             </Container>
+            
          </>
 )
         }
