@@ -41,12 +41,12 @@ public class TicketControllerIntegrationTest {
 	private ObjectMapper mapper;
 	
 	
-	private Ticket ticket_1 = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init","time","React issue","solution", false);
-	private Ticket ticket_1_updated = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "terry", "Terraform init","time", "sdbdjbdjbdbd","solution", false);
-	private Ticket ticket_1_completed = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init","time","React issue","solution", true);
-	private Ticket ticket_2 = new Ticket(2L, "trainee2", "cnejan", "frontend", "Reece", "react", "time","React issue","solution", false);
+	private Ticket ticket_1 = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init","time","React issue","", false);
+	private Ticket ticket_1_updated = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "terry", "Terraform init","time", "sdbdjbdjbdbd","", false);
+	private Ticket ticket_1_completed = new Ticket(1L, "Shamsi", "FebCNative", "terraform", "nathan", "Terraform init","time","React issue","", true);
+	private Ticket ticket_2 = new Ticket(2L, "trainee2", "cnejan", "frontend", "Reece", "react", "time","React issue","", false);
 	private Ticket ticket_3 = new Ticket(3L, "Aadil", "FebCNative", "terraform", "Vinesh", "jenkins","time", "sdbdjbdjbdbd","solution", true);
-	private Ticket ticket_4 = new Ticket(4L, "Haydon", "FebCNative", "GCP", "reece", "Security rules","time", "sdbdjbdjbdbd","solution", false);
+	private Ticket ticket_4 = new Ticket(4L, "Haydon", "FebCNative", "GCP", "reece", "Security rules","time", "sdbdjbdjbdbd","", false);
 	
 	
 	

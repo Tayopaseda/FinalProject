@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -61,7 +62,7 @@ public class Ticket {
 		this.title = title;
 		this.dateTime = dateTime;
 		this._description = _description;
-		this.solution = solution;
+		this.solution = "";
 		this.completed = false;
 	}
 
@@ -80,8 +81,6 @@ public class Ticket {
 		this.completed = completed;
 	}
 	
-	
-	
-	
+		
 
 }
