@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import axios from "axios";
 import {Button, Modal, Form } from "react-bootstrap";
 
@@ -51,7 +51,6 @@ const updateData = (e) => {
         console.log(response);
       })
       .catch((error) => {
-        console.log();
         console.log(error);
       });
 

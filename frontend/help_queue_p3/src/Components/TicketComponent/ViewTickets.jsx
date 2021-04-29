@@ -37,6 +37,7 @@ const completeTicket = (e) => {
     })
     .then((response) => {
         console.log(response)
+        setCompleted()
     })
     .catch((error) => {
         console.log(error);

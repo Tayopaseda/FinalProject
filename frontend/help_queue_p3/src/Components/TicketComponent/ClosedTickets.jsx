@@ -2,7 +2,7 @@ import Card from 'react-bootstrap/Card';
 import ViewTickets from './ViewTickets';
 
 const ClosedTickets = ({closedTicket}) => {
-    console.log(closedTicket);
+    // console.log(closedTicket);
 
     return(
         
