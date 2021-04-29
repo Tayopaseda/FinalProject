@@ -16,6 +16,13 @@ pipeline {
         }
       }
     }
+    stage('building Docker images') {
+      steps {
+        withCredentials([string(credentialsId: 'database_user', variable: 'dbUser'), string(credentials$
+          sh './scripts/build_images.sh'
+        }
+      }
+    }
     stage('deploy app') {
       steps {
         sh './scripts/deploy.sh'
