@@ -21,10 +21,22 @@
 - name: 'get service integration test results'
   shell: docker exec backend cat /opt/app/com.qa.fundamental.service.TicketServiceIntegrationTests.txt > Tests/TicketServiceIntegrationTests.txt          
 
-- name: 'save backend tests'
+- name: 'save backend controller integration tests'
   fetch: 
-    src: /home/ubuntu/Tests/
+    src: /home/ubuntu/Tests/TicketControllerIntegrationTest.txt
     dest: /home/jenkins/.jenkins/workspace/CI/Tests/ 
+    flat: yes
+
+- name: 'save backend service unit tests'
+  fetch:
+    src: /home/ubuntu/Tests/TicketServiceUnitTests.txt
+    dest: /home/jenkins/.jenkins/workspace/CI/Tests/
+    flat: yes
+
+- name: 'save backend service integration tests'
+  fetch:
+    src: /home/ubuntu/Tests/TicketServiceIntegrationTests.txt
+    dest: /home/jenkins/.jenkins/workspace/CI/Tests/
     flat: yes
 
 - name: 'delete containers and images'
