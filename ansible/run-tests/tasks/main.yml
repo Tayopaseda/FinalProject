@@ -39,6 +39,6 @@
     dest: /home/jenkins/.jenkins/workspace/CI/Tests/
     flat: yes
 
-- name: 'delete containers and images'
-  shell: docker stop backend && docker rm backend && docker rmi -f {{username}}/backend:test && docker network rm app-network 
+- name: 'clean up'
+  shell: docker stop backend && docker rm backend && docker rmi -f {{username}}/backend:test && docker network rm app-network && rm -r Tests
   
