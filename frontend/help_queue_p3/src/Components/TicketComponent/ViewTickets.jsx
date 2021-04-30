@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import axios from 'axios';
+import DeleteTicket from './DeleteTicket';
+
 
 
 
@@ -46,6 +48,21 @@ const completeTicket = (e) => {
     handleClose();
 }
 
+const deleteData = (e) => {
+    axios
+    .delete("http://localhost:8080/ticket/delete/" + id, {
+      headers: {
+        'Access-Control-Allow-Origin' : '*'
+        }
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
 if (!completed){
 
     return(
@@ -55,6 +72,14 @@ if (!completed){
         onClick={handleShow}
         > View
         </Button>
+        <>
+
+        <Button
+        variant="danger"
+        onClick={deleteData}
+        > Delete
+        </Button>
+        </>
 
         <Modal
             show={show}

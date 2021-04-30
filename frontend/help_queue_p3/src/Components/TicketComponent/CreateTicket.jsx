@@ -5,11 +5,7 @@ import { Button, Modal, Form} from "react-bootstrap";
 const CreateTicket = () => {
     
     const [show, setShow] = useState(false);
-    const [error, setError] = useState(`false`);
-    const [isLoaded, setLoaded] = useState(false);
-    const [ticketData, setTicketData] = useState([]);
-    const [isUpdate, setIsUpdate] = useState(true);
-    const [dataSort, setDataSort] = useState(`http://localhost:8080/ticket/create`);
+
     const handleClose=()=> setShow(false);
     const handleShow=()=> setShow(true);
 
@@ -48,28 +44,6 @@ const CreateTicket = () => {
         })
         handleClose();
     };
-
-    useEffect(() => {
-        setIsUpdate(false);
-        axios.get(dataSort, {
-          headers: {
-            'Access-Control-Allow-Origin' : '*'
-            }
-        }
-    )
-          .then(
-          (data) => {
-            setLoaded(true);
-            setError(false);
-            setTicketData(data.data);
-            console.log(ticketValues);
-          },
-          (error) => {
-            setLoaded(true);
-            setError(error);
-          }
-        );
-      }, [dataSort]);
 
     return(
         <>
@@ -182,3 +156,5 @@ const CreateTicket = () => {
 }
 
 export default CreateTicket ;
+
+
