@@ -30,8 +30,8 @@ import com.qa.fundamental.persistence.domain.Ticket;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @ActiveProfiles(profiles = "test")
-@Sql(scripts = { "classpath:ticket-schema.sql",
-		"classpath:ticket-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = { "classpath:schema.sql",
+		"classpath:data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 public class TicketControllerIntegrationTest {
 	
 	@Autowired
