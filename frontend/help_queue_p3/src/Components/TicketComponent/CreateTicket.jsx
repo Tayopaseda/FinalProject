@@ -35,7 +35,7 @@ const CreateTicket = () => {
     setTime(newDate);
 
     axios
-        .post(`http://backend:8080/ticket/create`, ticketValues)
+        .post(`http://a3129e30ad6a545b0bee2a8723b3a26e-2018857003.eu-west-2.elb.amazonaws.com:8081/ticket/create`, ticketValues)
         .then(function (response) {
            console.log(response);
         })
