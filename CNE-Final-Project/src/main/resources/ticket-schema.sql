@@ -6,6 +6,7 @@ CREATE TABLE ticket (
     cohort VARCHAR(255),
     title VARCHAR(255),
     _description VARCHAR(1000),
+    solution VARCHAR(1000),
     topic VARCHAR(255),
     completed BOOLEAN,
     trainer VARCHAR(255),
