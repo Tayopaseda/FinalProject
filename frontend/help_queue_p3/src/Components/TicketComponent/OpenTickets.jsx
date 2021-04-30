@@ -3,8 +3,10 @@ import DeleteTicket from './DeleteTicket';
 import UpdateTicket from './UpdateTicket';
 import ViewTickets from './ViewTickets';
 
-const OpenTickets = ({openTicket}) => {
+const OpenTickets = ({openTicket, refreshPage}) => {
     // console.log(openTicket);
+
+    //add setrefresh thingy
 
     return(
         
@@ -24,6 +26,8 @@ const OpenTickets = ({openTicket}) => {
             description={openTicket._description}
             topic={openTicket.topic}
             completed={openTicket.completed}
+            solution={openTicket.solution}
+            refreshPage={refreshPage}
             />
         <UpdateTicket
             id = {openTicket.id}
@@ -33,9 +37,11 @@ const OpenTickets = ({openTicket}) => {
             oldCohort = {openTicket.cohort}
             oldDescription = {openTicket._description}
             oldTopic = {openTicket.topic}
+            refreshPage={refreshPage}
             />
         <DeleteTicket
             id = {openTicket.id}
+            refreshPage={refreshPage}
             />
     </Card.Body>
 </Card>

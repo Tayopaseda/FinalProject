@@ -1,7 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import ViewTickets from './ViewTickets';
 
-const ClosedTickets = ({closedTicket}) => {
+const ClosedTickets = ({closedTicket, refreshPage}) => {
     // console.log(closedTicket);
 
     return(
@@ -22,6 +22,7 @@ const ClosedTickets = ({closedTicket}) => {
             description={closedTicket._description}
             topic={closedTicket.topic}
             completed={closedTicket.completed}
+            refreshPage={refreshPage}
             />
     </Card.Body>
 </Card>

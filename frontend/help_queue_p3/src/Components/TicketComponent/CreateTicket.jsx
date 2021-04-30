@@ -2,7 +2,7 @@ import React, {useState } from "react";
 import axios from "axios";
 import { Button, Modal, Form} from "react-bootstrap";
 
-const CreateTicket = () => {
+const CreateTicket = ({refreshPage}) => {
     
     const [show, setShow] = useState(false);
 
@@ -38,6 +38,7 @@ const CreateTicket = () => {
         .post(`http://localhost:8080/ticket/create`, ticketValues)
         .then(function (response) {
            console.log(response);
+           refreshPage(true);
         })
         .catch(function (error) {
            console.log(error);

@@ -12,7 +12,9 @@ const ViewTickets = ({
   cohort,
   description,
   topic,
-  completed
+  completed,
+  solution,
+  refreshPage
 }) => {
   
   const [show, setShow] = useState(false);
@@ -20,12 +22,19 @@ const ViewTickets = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [newCompleted, setCompleted] = useState(completed);
 
-const completeTicket = (e) => {
+  const [newCompleted, setCompleted] = useState(completed);
+  const [addSolution, setAddSolution] = useState(false);
+  const [newSolution, setSolution] = useState(solution);
+
+
+const completeTicket = (i) => {
+
+
 
     const ticketValues = {
-        completed: newCompleted
+        completed: newCompleted,
+        solution: newSolution
       };
 
 
@@ -37,7 +46,8 @@ const completeTicket = (e) => {
     })
     .then((response) => {
         console.log(response)
-        setCompleted()
+        setCompleted();
+        refreshPage(true);
     })
     .catch((error) => {
         console.log(error);
@@ -45,6 +55,14 @@ const completeTicket = (e) => {
 
     handleClose();
 }
+
+if (addSolution === true){
+    console.log("its TRUEEEEEEEEEEEEEEEEEE")
+} else {
+    console.log("Its FALSSSSSSSSEEEEEEEE");
+}
+
+
 
 if (!completed){
 
@@ -114,6 +132,19 @@ if (!completed){
                             readOnly value={description}
                             />
                     </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Add a Solution</Form.Label>
+                        <Form.Control
+                            type="checkbox"
+                            onChange={(i) => {
+                                setAddSolution(!addSolution)
+                            }}
+                            />
+                    </Form.Group>
+                    {
+                        addSolution ? <p>true</p> : <p>false</p>
+                    }
                 </Form>
 
                 <Button
@@ -122,11 +153,13 @@ if (!completed){
                     variant="success"
                     size="lg"
                     block
+                    disabled
                     >Complete Ticket
-                
                 </Button>
             </Modal.Body>
         </Modal>
+
+       
     </>
 
 )
