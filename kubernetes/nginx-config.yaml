@@ -11,3 +11,9 @@ data:
             proxy_pass http://help-queue:3000;
         }
     }
+    server {
+        listen 8080;
+        location / {
+            proxy_pass http://backend:8080;
+        }
+    }
