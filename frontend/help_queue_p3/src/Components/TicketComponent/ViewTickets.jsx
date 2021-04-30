@@ -30,7 +30,7 @@ const completeTicket = (e) => {
 
 
     axios
-    .put("http://backend:8080/ticket/completed/" + id, ticketValues, {
+    .put("http://a3129e30ad6a545b0bee2a8723b3a26e-2018857003.eu-west-2.elb.amazonaws.com:8081/ticket/completed/" + id, ticketValues, {
     headers: {
         'Access-Control-Allow-Origin' : '*'
         }
