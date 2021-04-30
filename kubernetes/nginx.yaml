@@ -21,6 +21,7 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
+        - containerPort: 8081
         volumeMounts:
         - name: nginx-config
           mountPath: /etc/nginx/conf.d
