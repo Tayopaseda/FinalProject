@@ -1,0 +1,11 @@
+---
+# tasks file for populate-database
+- name: 'install mysql-client'
+  shell: sudo apt update -y && sudo apt install mysql-client-core-8.0 -y
+
+- name: 'use ticket'
+  shell: mysql -h {{endpoint-address}} -P 3306 -u {{user}} -p{{password}} -e "USE ticket;"
+
+- name: 'create ticket table'
+  shell: mysql -h {{endpoint-address}} -P 3306 -u {{user}} -p{{password}} -e "USE ticket; CREATE TABLE IF NOT EXISTS ticket (id INT AUTO_INCREMENT,trainee VARCHAR(255),cohort VARCHAR(255),title VARCHAR(255),_description VARCHAR(1000),topic VARCHAR(255),completed BOOLEAN,trainer VARCHAR(255),date_time VARCHAR(255),PRIMARY KEY(id));"
+
