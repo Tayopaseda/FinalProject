@@ -2,3 +2,4 @@
   roles:
   - install-docker
   - run-tests
+  - push-images
