@@ -9,7 +9,8 @@ const UpdateTicket = ({
   oldTrainer,
   oldCohort,
   oldDescription,
-  oldTopic
+  oldTopic,
+  refreshPage
 }) => {
   const [show, setShow] = useState(false);
 
@@ -49,6 +50,7 @@ const updateData = (e) => {
     })
       .then((response) => {
         console.log(response);
+        refreshPage(true);
       })
       .catch((error) => {
         console.log(error);

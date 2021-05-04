@@ -13,10 +13,15 @@ import CreateTicket from '../TicketComponent/CreateTicket';
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
 
+    const [refresh, setRefresh] = useState(false);
+
+
     const refreshData=()=>{
         fetchOpenQueue()
         fetchClosedQueue();
     }
+
+
 
         // setTimeout(() => {
         //     fetchOpenQueue();
@@ -28,7 +33,8 @@ import CreateTicket from '../TicketComponent/CreateTicket';
         useEffect(() => {
             fetchOpenQueue();
             fetchClosedQueue();
-         },[]);
+            setRefresh(false);
+         },[refresh]);
 
         
 
@@ -78,7 +84,7 @@ import CreateTicket from '../TicketComponent/CreateTicket';
             <Button onClick={refreshData}>Refresh</Button>
             <Container>
 
-            <CreateTicket/>
+            <CreateTicket refreshPage={setRefresh}/>
 
             <Row>
                 <Col>
@@ -86,7 +92,9 @@ import CreateTicket from '../TicketComponent/CreateTicket';
             {
                 dataQueued.map((ticket) =>
                 <Row>
-                    <OpenTickets key={ticket.id} openTicket={ticket}/>
+                    <OpenTickets key={ticket.id} 
+                        openTicket={ticket}
+                        refreshPage={setRefresh}/>
                 </Row>
                 )
             }
@@ -96,7 +104,9 @@ import CreateTicket from '../TicketComponent/CreateTicket';
             {
                 dataCompleted.map((ticket) =>
                 <Row>
-                    <ClosedTickets key={ticket.id} closedTicket={ticket}/>
+                    <ClosedTickets key={ticket.id} 
+                        closedTicket={ticket}
+                        refreshPage={setRefresh}/>
                 </Row>
                 )
             }
