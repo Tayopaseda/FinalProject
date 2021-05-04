@@ -1,7 +1,5 @@
 ---
 # tasks file for run-tests
-- name: 'docker login'
-  shell: echo {{password}} | docker login --username={{username}} --password-stdin
 
 - name: 'pull git repo'
   shell: git clone https://github.com/HaychBe/shiny-funicular && cd shiny-funicular && git checkout -b kubernetes-test && git pull origin kubernetes-test
