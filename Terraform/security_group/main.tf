@@ -54,14 +54,6 @@ resource "aws_security_group" "prod-db" {
     protocol = "tcp"
     cidr_blocks = [var.test-vm-cidr]
   }
-  
-  ingress {
-    description = "allow inbound traffic on port 3306 from jenkins"
-    from_port = 3306
-    to_port = 3306
-    protocol = "tcp"
-    cidr_blocks = ["34.89.11.31/32"]
-  }
 
   ingress {
     description = "allow inbound traffic from eks cluster"
