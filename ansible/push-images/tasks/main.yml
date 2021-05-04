@@ -11,5 +11,5 @@
   shell: docker tag frontend tayop/frontend:latest && docker push tayop/frontend:latest
 
 - name: 'docker clean up'
-  shell: sudo docker rmi frontend:latest tayop/frontend:latest backend:latest tayop/backend:latest && sudo docker system prune -a -f
+  shell: sudo docker rmi frontend:latest tayop/frontend:latest backend:latest tayop/backend:latest
 
