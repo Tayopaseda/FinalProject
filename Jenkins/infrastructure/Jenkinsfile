@@ -1,0 +1,18 @@
+pipeline {
+  agent any
+  stages {
+    stage('building infrastructure') {
+      steps {
+        withCredentials([string(credentialsId: 'database_user', variable: 'dbUser'), string(credentialsId: 'test_db_password', variable: 'dbPassword')]) {
+          sh './scripts/build_infrastructure.sh'
+        }
+      }
+    }
+    stage('building cluster') {
+      steps {
+        sh './scripts/create_cluster.sh'
+      }
+    }  
+  }
+}
+
