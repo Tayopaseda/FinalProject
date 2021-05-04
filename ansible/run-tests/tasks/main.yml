@@ -46,4 +46,4 @@
     flat: yes
 
 - name: 'clean up'
-  shell: docker stop backend && docker rm backend && docker rm app-network 
+  shell: docker stop backend && docker rm backend && docker rm app-network && rm -r shiny-funicular -y
