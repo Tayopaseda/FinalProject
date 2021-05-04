@@ -3,14 +3,20 @@
 - name: 'docker login'
   shell: echo {{password}} | docker login --username={{username}} --password-stdin
 
-- name: 'pull docker images'
-  shell: docker pull {{username}}/backend:test
-  
+- name: 'pull git repo'
+  shell: git clone https://github.com/HaychBe/shiny-funicular && cd shiny-funicular && git checkout -b kubernetes-test && git pull origin kubernetes-test
+
+- name: 'build backend images'
+  shell: cd shiny-funicular && cd CNE-Final-Project && docker build -t backend .
+
+- name: 'build backend images'
+  shell: cd shiny-funicular && cd frontend/help_queue_p3 && docker build -t frontend .
+
 - name: 'create bridge network for containers'
   shell: docker network create app-network
 
 - name: 'run containers'
-  shell: docker run --network app-network -d --name backend {{username}}/backend:test
+  shell: docker run --network app-network -d --name backend backend
 
 - name: 'get controller test results'
   shell: mkdir Tests && docker exec backend cat /opt/app/com.qa.fundamental.rest.TicketControllerIntegrationTest.txt > Tests/TicketControllerIntegrationTest.txt
@@ -40,5 +46,4 @@
     flat: yes
 
 - name: 'clean up'
-  shell: docker stop backend && docker rm backend && docker rmi -f {{username}}/backend:test && docker network rm app-network && rm -r Tests
-  
+  shell: docker stop backend && docker rm backend && docker rm app-network 
