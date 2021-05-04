@@ -40,7 +40,7 @@ import CreateTicket from '../TicketComponent/CreateTicket';
 
     const fetchOpenQueue =()=>{
         axios
-        .get(`http://a3129e30ad6a545b0bee2a8723b3a26e-2018857003.eu-west-2.elb.amazonaws.com:8081/ticket/readQueued`)
+        .get(`http://af9c5b888c5104d81bb1bd90f57e83ab-504368976.eu-west-2.elb.amazonaws.com:8081/ticket/readQueued`)
         .then((response) => {
             setIsLoaded(true);
             setDataQueued(response.data);
@@ -53,7 +53,7 @@ import CreateTicket from '../TicketComponent/CreateTicket';
 
     const fetchClosedQueue =()=>{
         axios
-        .get(`http://a3129e30ad6a545b0bee2a8723b3a26e-2018857003.eu-west-2.elb.amazonaws.com:8081/ticket/readCompleted`)
+        .get(`http://af9c5b888c5104d81bb1bd90f57e83ab-504368976.eu-west-2.elb.amazonaws.com:8081/ticket/readCompleted`)
         .then((response) => {
             setIsLoaded(true);
             setDataCompleted(response.data);
