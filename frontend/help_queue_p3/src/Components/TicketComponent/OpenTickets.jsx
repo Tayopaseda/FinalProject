@@ -25,6 +25,7 @@ const OpenTickets = ({openTicket, refreshPage}) => {
             cohort={openTicket.cohort}
             description={openTicket._description}
             topic={openTicket.topic}
+            time={openTicket.dateTime}
             completed={openTicket.completed}
             solution={openTicket.solution}
             refreshPage={refreshPage}

@@ -22,6 +22,7 @@ const ClosedTickets = ({closedTicket, refreshPage}) => {
             description={closedTicket._description}
             topic={closedTicket.topic}
             completed={closedTicket.completed}
+            solution={closedTicket.solution}
             refreshPage={refreshPage}
             />
     </Card.Body>

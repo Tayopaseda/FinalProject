@@ -11,7 +11,8 @@ const DeleteTicket = ({
   trainer,
   cohort,
   description,
-  topic
+  topic,
+  refreshPage
 }) => {
 
   const deleteData = (e) => {
@@ -23,6 +24,8 @@ const DeleteTicket = ({
     })
     .then((response) => {
       console.log(response);
+      refreshPage(true)
+
     })
     .catch((error) => {
       console.log(error);
