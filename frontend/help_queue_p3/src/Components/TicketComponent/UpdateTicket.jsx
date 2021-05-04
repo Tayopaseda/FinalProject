@@ -34,7 +34,7 @@ const updateData = (e) => {
         trainee: traineeName,
         trainer: trainer,
         topic: topic,
-        _description: description,
+        description: description,
         cohort: cohort,
         dateTime: time,
       };
@@ -141,6 +141,7 @@ const updateData = (e) => {
 
                     <Form.Group>
                         <Form.Label>Title</Form.Label>
+                        <h5 id="tickTitle" className="ticketText">
                         <Form.Control
                             type="text"
                             value={title}
