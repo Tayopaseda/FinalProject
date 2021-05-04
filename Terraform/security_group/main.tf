@@ -27,20 +27,7 @@ resource "aws_security_group" "test-vm" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
-resource "aws_security_group" "test-db" {
-  vpc_id = var.vpc_id
-  name = "test-db-sg"
-  description = "security group for test database"
-  
-  ingress {
-    description = "allow inbound traffic from test-vm on port 3306"
-    from_port = 3306
-    to_port = 3306
-    protocol = "tcp"
-    cidr_blocks = [var.test-vm-cidr]
-  }
-} 
+ 
 
 resource "aws_security_group" "prod-db" {
   vpc_id = var.vpc_id

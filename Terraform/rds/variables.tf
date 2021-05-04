@@ -6,10 +6,6 @@ variable "rds-sub-2" {
 
 }
 
-variable "test-db-sg" {
-
-}
-
 variable "username" {
   default = "{username}"
 }
