@@ -1,7 +1,5 @@
 ---
 # tasks file for push-images
-- name: 'docker login'
-  shell: echo {{password}} | docker login --username={{username}} --password-stdin
 
 - name: 'docker tag and push backend'
   shell: sudo docker tag backend tayop/backend:latest && sudo docker push tayop/backend:latest
