@@ -5,10 +5,10 @@
   shell: echo {{password}} | docker login --username={{username}} --password-stdin
 
 - name: 'docker tag and push backend'
-  shell: sudo docker tag backend tayop/backend:latest && sudo docker push tayop/backend:latest
+  shell: docker tag backend tayop/backend:latest && docker push tayop/backend:latest
 
 - name: 'docker tag and push frontend'
-  shell: sudo docker tag frontend tayop/frontend:latest && sudo docker push tayop/frontend:latest
+  shell: docker tag frontend tayop/frontend:latest && docker push tayop/frontend:latest
 
 - name: 'docker clean up'
   shell: sudo docker rmi frontend:latest tayop/frontend:latest backend:latest tayop/backend:latest && sudo docker system prune -a -f
