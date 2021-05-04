@@ -8,6 +8,10 @@ sed -i "s/test-vm/$testIP/g" ./ansible/inventory.yaml
 sed -i "s/{{password}}/$dockerPassword/g" ./ansible/push-images/tasks/main.yml
 sed -i "s/{{username}}/$dockerUsername/g" ./ansible/push-images/tasks/main.yml
 
+sed -i "s/{{endpoint-address}}/$prodEndpointAddress/g" ./ansible/populate-database/tasks/main.yml 
+sed -i "s/{{user}}/$dbUser/g" ./ansible/populate-database/tasks/main.yml 
+sed -i "s/{{password}}/$dbPassword/g" ./ansible/populate-database/tasks/main.yml 
+
 #run ansible playbook
 cd ./ansible
 ansible-playbook -i inventory.yaml playbook.yaml
