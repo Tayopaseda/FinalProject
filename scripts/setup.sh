@@ -10,5 +10,5 @@ sleep 3
 
 export backend_endpoint=$(kubectl get services nginx-lb)
 
-cd..
+cd ..
 sed -i "s/{{endpoint}}/$backend_endpoint/g"  scripts/frontend-setup.sh
