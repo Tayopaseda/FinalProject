@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export backend="{{endpoint}}:8081"
+export backend={{endpoint}}:8081
 export database={{cluster-address}}
 
 sed -i "s/localhost:8080/$backend/g" /home/ubuntu/shiny-funicular/frontend/help_queue_p3/src/Components/Homepage/Main.jsx
