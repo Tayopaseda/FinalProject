@@ -3,11 +3,11 @@
 - name: 'pull git repo'
   shell: git clone https://github.com/HaychBe/shiny-funicular && cd shiny-funicular && git checkout -b kubernetes && git pull origin kubernetes
 
-- name: 'build backend images'
-  shell: cd shiny-funicular && cd CNE-Final-Project && docker build -t backend .
-
 - name: 'substitute endpoint in'
   script: /home/jenkins/.jenkins/workspace/deploy-app/scripts/frontend-setup.sh
+
+- name: 'build backend images'
+  shell: cd shiny-funicular && cd CNE-Final-Project && docker build -t backend .
 
 - name: 'build frontend images'
   shell: cd shiny-funicular && cd frontend/help_queue_p3 && docker build -t frontend .
