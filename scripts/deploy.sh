@@ -11,7 +11,7 @@ kubectl rollout restart deployment backend
 kubectl rollout status deployment/backend
 
 kubectl rollout restart deployment help-queue
-kubectl rollout status deployment/backend
+kubectl rollout status deployment/help-queue
 
 sleep 3
 
