@@ -1,5 +1,7 @@
 #! /bin/bash
 
+source ~/.bash_profile
+
 cd ./kubernetes
 
 kubectl apply -f namespace.yaml
@@ -12,3 +14,5 @@ export backend_endpoint=$(kubectl get services nginx-lb)
 
 cd ..
 sed -i "s/{{endpoint}}/$backend_endpoint/g"  scripts/frontend-setup.sh
+
+sed -i "s/{{cluster-address}}/$prodEndpointAddress/g" CNE-Final-Project/src/main/resources/application-dev.properties
