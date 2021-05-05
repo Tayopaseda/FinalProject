@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: help-queue
+  namespace: production
+  labels:
+    app: help-queue
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: help-queue
+  template:
+    metadata:
+      labels:
+        app: help-queue
+    spec:
+      containers:
+      - name: frontend
+        image: tayop/frontend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2

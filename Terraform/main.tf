@@ -40,6 +40,5 @@ module "rds" {
   source = "./rds"
   rds-sub-1 = module.subnets.rds-1
   rds-sub-2 = module.subnets.rds-2
-  test-db-sg = module.security_group.test-db
   prod-db-sg = module.security_group.prod-db
 }

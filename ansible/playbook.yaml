@@ -1,0 +1,6 @@
+- hosts: all
+  roles:
+  - install-docker
+  - populate-database
+  - run-tests
+  - push-images
