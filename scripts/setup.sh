@@ -10,9 +10,7 @@ kubectl apply -f nginx-config.yaml
 kubectl apply -f nginx-lb.yaml -f nginx.yaml
 sleep 3
 
-export backend_endpoint=$(kubectl get services nginx-lb)
-
 cd ..
-sed -i "s/{{endpoint}}/$backend_endpoint/g"  scripts/frontend-setup.sh
+sed -i "s/{{endpoint}}/$(kubectl get services nginx-lb)/g"  scripts/frontend-setup.sh
 
 sed -i "s/{{cluster-address}}/$prodEndpointAddress/g" scripts/frontend-setup.sh
