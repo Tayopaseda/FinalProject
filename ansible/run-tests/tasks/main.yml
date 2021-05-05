@@ -7,7 +7,7 @@
   shell: cd shiny-funicular && cd CNE-Final-Project && docker build -t backend .
 
 - name: 'substitute endpoint in'
-  script: /home/ubuntu/shiny-funicular/scripts/frontend-setup.sh
+  script: /home/jenkins/.jenkins/workspace/deploy-app/scripts/frontend-setup.sh
 
 - name: 'build frontend images'
   shell: cd shiny-funicular && cd frontend/help_queue_p3 && docker build -t frontend .
