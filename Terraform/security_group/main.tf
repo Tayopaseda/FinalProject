@@ -11,14 +11,7 @@ resource "aws_security_group" "test-vm" {
     cidr_blocks = ["34.89.11.31/32"]
   }
   
-  ingress {
-    description = "allow inbound traffic from test db"
-    from_port = 3306
-    to_port = 3306
-    protocol = "tcp"
-    security_groups = [aws_security_group.test-db.id]
-  }
-
+  
   egress {
     description = "allow all outbound traffic"
     from_port = 0
