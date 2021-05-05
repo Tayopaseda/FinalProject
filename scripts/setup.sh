@@ -11,6 +11,9 @@ kubectl apply -f nginx-lb.yaml -f nginx.yaml
 sleep 3
 
 cd ..
-sed -i "s/{{endpoint}}/$(kubectl get services nginx-lb)/g"  scripts/frontend-setup.sh
+
+export backend=$(kubectl get services -o=jsonpath='{.items[?(@.metadata.name=="nginx-lb")].status.loadBalancer.ingress[0].hostname}')
+
+sed -i "s/{{endpoint}}/$backend/g"  scripts/frontend-setup.sh
 
 sed -i "s/{{cluster-address}}/$prodEndpointAddress/g" scripts/frontend-setup.sh
