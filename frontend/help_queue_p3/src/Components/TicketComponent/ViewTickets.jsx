@@ -31,9 +31,14 @@ const ViewTickets = ({
 
 const completeTicket = (i) => {
 
+//   if(!newSolution) return {
+   
+    
+//   }
+
+
+
   
-
-
     const ticketValues = {
         completed: newCompleted,
         solution: newSolution,
@@ -176,9 +181,6 @@ if (!completed){
                             }}
                             />
                     </Form.Group>
-                    {
-                        addSolution ? <p>true</p> : <p>false</p>
-                    }
                 </Form>
 
                 <Button
@@ -267,6 +269,7 @@ if (!completed){
                                 <Form.Label>Solution</Form.Label>
                                 <Form.Control
                                     as="textarea"
+                                    required
                                     rows={5}
                                     onChange={(i) => {
                                         setSolution(i.target.value);
