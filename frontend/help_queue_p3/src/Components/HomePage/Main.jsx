@@ -1,25 +1,24 @@
 import { useEffect, useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner'
 import axios from 'axios';
-import {Button, Col, Container, Row } from 'react-bootstrap';
+// import "../css/main.css"
+import {Button, Col, Container, Dropdown, DropdownButton, Row } from 'react-bootstrap';
 import OpenTickets from '../TicketComponent/OpenTickets';
 import ClosedTickets from '../TicketComponent/ClosedTickets';
 import CreateTicket from '../TicketComponent/CreateTicket';
 
- const Main = () => {
+ const Main = ({cohort}) => {
 
     const [dataCompleted, setDataCompleted] = useState([]);
+    const [dataQueuedCohort, setDataQueuedCohort] = useState([]);
     const [dataQueued, setDataQueued] = useState([]);
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
 
     const [refresh, setRefresh] = useState(false);
 
+    console.log(dataQueuedCohort);
 
-    const refreshData=()=>{
-        fetchOpenQueue()
-        fetchClosedQueue();
-    }
 
 
 
@@ -43,6 +42,7 @@ import CreateTicket from '../TicketComponent/CreateTicket';
         .get(`http://localhost:8080/ticket/readQueued`)
         .then((response) => {
             setIsLoaded(true);
+            // setDataQueuedCohort(response.data)
             setDataQueued(response.data);
         })
         .catch((error) => {
@@ -56,6 +56,7 @@ import CreateTicket from '../TicketComponent/CreateTicket';
         .get(`http://localhost:8080/ticket/readCompleted`)
         .then((response) => {
             setIsLoaded(true);
+            setDataQueuedCohort(response.data)
             setDataCompleted(response.data);
         })
         .catch((error) => {
@@ -63,6 +64,7 @@ import CreateTicket from '../TicketComponent/CreateTicket';
             setError(error);
         });
     }
+
         
         if(error){
             return <h3>We're having trouble receiving the queue! {error.message} </h3>
@@ -78,16 +80,29 @@ import CreateTicket from '../TicketComponent/CreateTicket';
     } else {
         
         
+        
         return(
             
             <>
-            <Button onClick={refreshData}>Refresh</Button>
             <Container>
 
-            <CreateTicket refreshPage={setRefresh}/>
+            <form>
+            <input list="Cohorts" name="Cohort"/>
+            <datalist id="Cohorts">
+                {
+                    dataQueuedCohort.map((ticket, key) =>  
+                        <option key={key} value={ticket.cohort}/>
+                        // <p>It worked</p>
+                    )
+                }
+            </datalist>
+            <input type="submit"/>
+            </form>
 
+            <CreateTicket refreshPage={setRefresh}/>
+            
             <Row>
-                <Col>
+                <Col id="testLeft">
                 <h1>Queue</h1>
             {
                 dataQueued.map((ticket) =>
@@ -99,7 +114,7 @@ import CreateTicket from '../TicketComponent/CreateTicket';
                 )
             }
                 </Col>
-                <Col>
+                <Col id="testRight">
                 <h1>Completed</h1>
             {
                 dataCompleted.map((ticket) =>
