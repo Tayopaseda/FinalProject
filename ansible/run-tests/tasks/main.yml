@@ -1,10 +1,13 @@
 ---
 # tasks file for run-tests
 - name: 'pull git repo'
-  shell: git clone https://github.com/HaychBe/shiny-funicular && cd shiny-funicular && git checkout -b kubernetes-test && git pull origin kubernetes-test
+  shell: git clone https://github.com/HaychBe/shiny-funicular && cd shiny-funicular && git checkout -b kubernetes && git pull origin kubernetes
 
 - name: 'build backend images'
   shell: cd shiny-funicular && cd CNE-Final-Project && docker build -t backend .
+
+- name: 'substitute endpoint in'
+  script: /home/ubuntu/shiny-funicular/scripts/frontend-setup.sh
 
 - name: 'build frontend images'
   shell: cd shiny-funicular && cd frontend/help_queue_p3 && docker build -t frontend .
