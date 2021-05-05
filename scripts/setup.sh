@@ -9,5 +9,5 @@ kubectl apply -f nginx-lb.yaml -f nginx.yaml
 sleep 3
 
 export backend_endpoint=$(kubectl get services nginx-lb)
-
-
+cd..
+sed -i "s/{{endpoint}}/$backend_endpoint/g"  scripts/frontend-setup.sh
