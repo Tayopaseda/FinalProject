@@ -6,7 +6,7 @@ metadata:
   labels:
     app: help-queue
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: help-queue
