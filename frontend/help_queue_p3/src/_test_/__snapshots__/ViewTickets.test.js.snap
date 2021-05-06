@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ViewTicket should match the snapshot every time it is rendered 1`] = `
+<button
+  className="btn btn-info"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+>
+   View
+</button>
+`;
+
+exports[`renders correctly 1`] = `
+<button
+  className="btn btn-info"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+>
+   View
+</button>
+`;
