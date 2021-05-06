@@ -1,6 +1,4 @@
 # shiny-funicular
-# SF2
-
 
 ## Index
 
