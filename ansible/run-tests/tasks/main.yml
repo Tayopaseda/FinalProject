@@ -1,0 +1,44 @@
+---
+# tasks file for run-tests
+- name: 'docker login'
+  shell: echo {{password}} | docker login --username={{username}} --password-stdin
+
+- name: 'pull docker images'
+  shell: docker pull {{username}}/backend:test
+  
+- name: 'create bridge network for containers'
+  shell: docker network create app-network
+
+- name: 'run containers'
+  shell: docker run --network app-network -d --name backend {{username}}/backend:test
+
+- name: 'get controller test results'
+  shell: mkdir Tests && docker exec backend cat /opt/app/com.qa.fundamental.rest.TicketControllerIntegrationTest.txt > Tests/TicketControllerIntegrationTest.txt
+
+- name: 'get service unit test results'
+  shell: docker exec backend cat /opt/app/com.qa.fundamental.service.TicketServiceUnitTests.txt > Tests/TicketServiceUnitTests.txt
+
+- name: 'get service integration test results'
+  shell: docker exec backend cat /opt/app/com.qa.fundamental.service.TicketServiceIntegrationTests.txt > Tests/TicketServiceIntegrationTests.txt          
+
+- name: 'save backend controller integration tests'
+  fetch: 
+    src: /home/ubuntu/Tests/TicketControllerIntegrationTest.txt
+    dest: /home/jenkins/.jenkins/workspace/deploy-app/Tests/ 
+    flat: yes
+
+- name: 'save backend service unit tests'
+  fetch:
+    src: /home/ubuntu/Tests/TicketServiceUnitTests.txt
+    dest: /home/jenkins/.jenkins/workspace/deploy-app/Tests/
+    flat: yes
+
+- name: 'save backend service integration tests'
+  fetch:
+    src: /home/ubuntu/Tests/TicketServiceIntegrationTests.txt
+    dest: /home/jenkins/.jenkins/workspace/deploy-app/Tests/
+    flat: yes
+
+- name: 'clean up'
+  shell: docker stop backend && docker rm backend && docker rmi -f {{username}}/backend:test && docker network rm app-network && rm -r Tests
+  

@@ -1,0 +1,32 @@
+pipeline {
+  agent any
+  stages {
+    stage('building test Docker images') {
+      steps {
+        withCredentials([string(credentialsId: 'database_user', variable: 'dbUser'), string(credentialsId: 'test_db_password', variable: 'dbPassword'), string(credentialsId: 'secret_key', variable: 'secretKey'), string(credentialsId: 'docker_password', variable: 'dockerPassword'), string(credentialsId: 'docker_username', variable: 'dockerUsername')]) {
+          sh './scripts/build_test_images.sh'
+        }
+      }
+    }
+    stage('setting up test vm and running tests') {
+      steps {
+        withCredentials([string(credentialsId: 'docker_password', variable: 'dockerPassword'), string(credentialsId: 'docker_username', variable: 'dockerUsername'), string(credentialsId: 'database_user', variable: 'dbUser'), string(credentialsId: 'test_db_password', variable: 'dbPassword')]) {
+          sh './scripts/tests.sh'
+          archiveArtifacts artifacts: 'Tests/*.txt', fingerprint: true, followSymlinks: false
+        }
+      }
+    }
+    stage('building Docker images') {
+      steps {
+        withCredentials([string(credentialsId: 'database_user', variable: 'dbUser'), string(credentialsId: 'test_db_password', variable: 'dbPassword'), string(credentialsId: 'secret_key', variable: 'secretKey'), string(credentialsId: 'docker_password', variable: 'dockerPassword'), string(credentialsId: 'docker_username', variable: 'dockerUsername')]) {
+          sh './scripts/build_images.sh'
+        }
+      }
+    }
+    stage('deploy app') {
+      steps {
+        sh './scripts/deploy.sh'
+      }
+    }
+  }
+}
