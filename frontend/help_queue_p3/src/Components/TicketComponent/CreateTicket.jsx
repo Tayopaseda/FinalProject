@@ -1,6 +1,7 @@
 import React, {useState } from "react";
 import axios from "axios";
 import { Button, Modal, Form} from "react-bootstrap";
+import CreateTicketImg from "../../css/images/CreateTicket.png"
 
 const CreateTicket = ({refreshPage}) => {
     
@@ -11,7 +12,7 @@ const CreateTicket = ({refreshPage}) => {
 
 
     const [traineeName, setTraineeName] = useState(``);
-    const [cohort, setCohort] = useState(`CNE2021`);
+    const [cohort, setCohort] = useState(``);
     const [topic, setTopic] = useState(``);
     const [trainer, setTrainer] = useState(``);
     const [title, setTitle] = useState(``);
@@ -49,8 +50,9 @@ const CreateTicket = ({refreshPage}) => {
     return(
         <>
             <Button
-                variant='success'
-                onClick={handleShow}>Create Ticket    
+                id="createBtn" 
+                variant='light'
+                onClick={handleShow}><img src={CreateTicketImg} alt="createTicketBtn"/>    
             </Button>
 
         <Modal
@@ -82,6 +84,7 @@ const CreateTicket = ({refreshPage}) => {
                                     setCohort(i.target.value);
                                     }}
                             >
+                                <option value ="" selected disabled hidden>Choose here</option>
                                 <option>CloudNative</option>                        
                                 <option>Software Specialist</option>                        
                                 <option>DevOps</option>   
@@ -96,6 +99,7 @@ const CreateTicket = ({refreshPage}) => {
                                     setTopic(i.target.value);
                                 }}
                             >
+                                <option value ="" selected disabled hidden>Choose here</option>
                                 <option>FrontEnd</option>
                                 <option>BackEnd</option>
                                 <option>DevOps</option>
@@ -111,6 +115,7 @@ const CreateTicket = ({refreshPage}) => {
                                     setTrainer(i.target.value);
                                 }}
                             >
+                                <option value ="" selected disabled hidden>Choose here</option>
                                 <option>Vinesh Ghela</option>
                                 <option>Jordan Harrison</option>
                                 <option>Reece Elder</option>
