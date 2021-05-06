@@ -13,4 +13,3 @@ const Banner = () => {
 }
 
 export default Banner;
-© 2021 GitHub, Inc.
