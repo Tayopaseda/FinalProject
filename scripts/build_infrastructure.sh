@@ -11,8 +11,6 @@ terraform apply -auto-approve
 
 cat > ~/.bash_profile << EOF
 export testIP=$(terraform output -raw test-vm-public-ip)
-export testEndpoint=$(terraform output -raw test-db-endpoint)
-export testEndpointAddress=$(terraform output -raw test-db-address)
 export prodEndpoint=$(terraform output -raw prod-db-endpoint)
 export prodEndpointAddress=$(terraform output -raw prod-db-address)
 export vpcID=$(terraform output -raw vpc-id)
