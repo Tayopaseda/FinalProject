@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner'
 import axios from 'axios';
-// import "../css/main.css"
 import {Button, Col, Container, Dropdown, DropdownButton, Row } from 'react-bootstrap';
 import OpenTickets from '../TicketComponent/OpenTickets';
 import ClosedTickets from '../TicketComponent/ClosedTickets';
@@ -101,8 +100,11 @@ import CreateTicket from '../TicketComponent/CreateTicket';
 
             <CreateTicket refreshPage={setRefresh}/>
             
+
+            <div id="mainDiv">
+
             <Row>
-                <Col id="testLeft">
+                <Col id="queuedColumn">
                 <h1>Queue</h1>
             {
                 dataQueued.map((ticket) =>
@@ -114,7 +116,7 @@ import CreateTicket from '../TicketComponent/CreateTicket';
                 )
             }
                 </Col>
-                <Col id="testRight">
+                <Col id="completedColumn">
                 <h1>Completed</h1>
             {
                 dataCompleted.map((ticket) =>
@@ -127,6 +129,8 @@ import CreateTicket from '../TicketComponent/CreateTicket';
             }
                 </Col>
             </Row>
+
+            </div>
 
             </Container>
             

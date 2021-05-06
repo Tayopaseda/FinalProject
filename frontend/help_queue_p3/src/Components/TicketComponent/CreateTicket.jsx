@@ -49,6 +49,7 @@ const CreateTicket = ({refreshPage}) => {
     return(
         <>
             <Button
+                id="createBtn" 
                 variant='success'
                 onClick={handleShow}>Create Ticket    
             </Button>
