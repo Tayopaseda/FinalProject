@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test of Banner Banner should match the snapshot every time it is rendered 1`] = `
-<h1>
-  NAV OR BANNER HERE
-</h1>
+<div>
+  <img
+    alt="Logo"
+    id="mainBanner"
+    src="Banner.png"
+  />
+  ;
+</div>
 `;

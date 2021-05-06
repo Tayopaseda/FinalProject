@@ -2,9 +2,14 @@
 
 exports[`Snapshot test of App  App should match the snapshot every time it is rendered 1`] = `
 Array [
-  <h1>
-    NAV OR BANNER HERE
-  </h1>,
+  <div>
+    <img
+      alt="Logo"
+      id="mainBanner"
+      src="Banner.png"
+    />
+    ;
+  </div>,
   <p>
     Please wait, we're retrieving the data...
   </p>,
