@@ -86,7 +86,7 @@ The Frontend is a React application which utilises React Bootstrap for the funct
 
 The design of the frontend was to make sure that it was fully functional and at a high standard like modern websites today in order to meet users expectations when the website is being used
 
-The purpose of the website is to have a fully functional CRUD ((Create, Read, Update, Delete) functionality.
+The purpose of the website is to have a fully functional CRUD (Create, Read, Update, Delete) functionality.
 
 The images below show the frontend design being fully functional;
 
