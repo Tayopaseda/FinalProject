@@ -16,7 +16,7 @@ RUN npm install react-scripts@3.4.1 -g --silent
 # add app
 COPY . ./
 
-RUN npm run test -- --coverage
+RUN npm run test --watchAll=false --coverage
 
 # expose port 3000
 EXPOSE 3000
