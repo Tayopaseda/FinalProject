@@ -22,3 +22,9 @@
 #createBtn {
   margin-bottom: 20px;
 }
+
+#mainBanner {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
