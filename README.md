@@ -1,11 +1,12 @@
-# shiny-funicular
+# SF2
+
 
 ## Index
 
 1. [Introduction](#Introduction)
 2. [Technologies](#Technologies)
 3. [Project Planning](#Project_Planning)
-4. [Entity Relationship Diagram](#Entity_Relationship)
+4. [Entity Relationship Diagram](#Entity_Relationship_Diagram)
 5. [Frontend](#Frontend)
 6. [DevOps](#DevOps)
 7. [Backend](#Backend)
@@ -64,10 +65,16 @@ The team then decided among each other on what section they wanted to work on, i
 
 The Jira board shows the backlog of the tasks for the project and who they are assigned to.
 
+![](https://i.imgur.com/LkYsZ0k.png)
+--
+
 ![](https://i.imgur.com/85g1Wrj.png)
+
 
 The board has been designed in order for users to make posts of tasks needed for completion. The board allows users to move tasks from left to right from 'To do' to 'Completion'.
 
+![](https://i.imgur.com/FCh5Z5V.png)
+--
 ![](https://i.imgur.com/N4i1hGO.png)
 
 # Entity Relationship Diagram <a name="Project_Planning"></a> 
@@ -175,4 +182,3 @@ We would like to thank and acknowledge all the QA Trainers and our friends that 
 - Shamsi Ara Shumi
 
 - Haydon Beale
-
