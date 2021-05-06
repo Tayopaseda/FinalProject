@@ -30,5 +30,7 @@
 }
 
 #dropdown {
+  top: 93px;
+  position: sticky;
   float: right;
 }

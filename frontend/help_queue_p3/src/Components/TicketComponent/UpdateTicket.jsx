@@ -1,6 +1,6 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import {Button, Modal, Form } from "react-bootstrap";
+import { Button, Modal, Form } from "react-bootstrap";
 
 const UpdateTicket = ({
   id,
@@ -10,7 +10,7 @@ const UpdateTicket = ({
   oldCohort,
   oldDescription,
   oldTopic,
-  refreshPage
+  refreshPage,
 }) => {
   const [show, setShow] = useState(false);
 
@@ -20,34 +20,35 @@ const UpdateTicket = ({
   const [title, setTitle] = useState(oldTitle);
   const [traineeName, setTrainee] = useState(oldTraineeName);
   const [trainer, setTrainer] = useState(oldTrainer);
+  const [urgency, setUrgency] = useState(``);
   const [cohort, setCohort] = useState(oldCohort);
   const [description, setDescription] = useState(oldDescription);
   const [topic, setTopic] = useState(oldTopic);
-  const [time, setTime] = useState(
-    new Date().toLocaleString('en-GB')
-  );
+  const [time, setTime] = useState(new Date().toLocaleString("en-GB"));
 
-const updateData = (e) => {
+  const updateData = (e) => {
     e.preventDefault();
 
     const ticketValues = {
-        title: title,
-        trainee: traineeName,
-        trainer: trainer,
-        topic: topic,
-        _description: description,
-        cohort: cohort,
-        dateTime: time,
-      };
-    
+      title: title,
+      trainee: traineeName,
+      trainer: trainer,
+      topic: topic,
+      _description: description,
+      cohort: cohort,
+      dateTime: time,
+      urgency: urgency,
+    };
+
     //   console.log(ticketValues);
-      
-    setTime(new Date().toLocaleString("en-GB"))
-    axios.put("http://localhost:8080/ticket/update/" + id, ticketValues,  {
-      headers: {
-        'Access-Control-Allow-Origin' : '*'
-        }
-    })
+
+    setTime(new Date().toLocaleString("en-GB"));
+    axios
+      .put("http://localhost:8080/ticket/update/" + id, ticketValues, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
       .then((response) => {
         console.log(response);
         refreshPage(true);
@@ -56,130 +57,137 @@ const updateData = (e) => {
         console.log(error);
       });
 
-      handleClose();
-      
+    handleClose();
   };
 
-  return(
-
+  return (
     <>
-        <Button 
-        variant="secondary" 
-        onClick={handleShow}
-        > Update
-        </Button>
+      <Button variant="secondary" onClick={handleShow}>
+        {" "}
+        Update
+      </Button>
 
-        <Modal
-            show={show}
-            onHide={handleClose}
-            dialogClassName="ticketModal"
-            scrollable={true}
-        >
-            <Modal.Header closeButton>
-                <Modal.Title>Edit Ticket Modal</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={updateData}>
-                    <Form.Group>
-                        <Form.Label>Trainee Name</Form.Label>
-                        <Form.Control
-                            type="text"
-                            value={traineeName}
-                            placeholder="Trainee Name"
-                            onChange={(i) => {
-                                setTrainee(i.target.value);
-                            }}
-                        />
-                    </Form.Group>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        dialogClassName="ticketModal"
+        scrollable={true}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Ticket Modal</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={updateData}>
+            <Form.Group>
+              <Form.Label>Trainee Name</Form.Label>
+              <Form.Control
+                type="text"
+                value={traineeName}
+                placeholder="Trainee Name"
+                onChange={(i) => {
+                  setTrainee(i.target.value);
+                }}
+              />
+            </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Cohort</Form.Label>
-                        <Form.Control
-                            as="select"
-                            value={cohort}
-                            onChange={(i) => {
-                                setCohort(i.target.value);
-                            }}
-                        >
-                            <option>CloudNative</option>                        
-                            <option>Software Specialist</option>                        
-                            <option>DevOps</option>   
-                        </Form.Control>
-                    </Form.Group>
+            <Form.Group>
+              <Form.Label>Cohort</Form.Label>
+              <Form.Control
+                as="select"
+                value={cohort}
+                onChange={(i) => {
+                  setCohort(i.target.value);
+                }}
+              >
+                <option>CloudNative</option>
+                <option>Software Specialist</option>
+                <option>DevOps</option>
+              </Form.Control>
+            </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Topics</Form.Label>
-                        <Form.Control
-                            as="select"
-                            value={topic}
-                            onChange={(i) => {
-                                setTopic(i.target.value);
-                            }}
-                        >
-                            <option>FrontEnd</option>
-                            <option>BackEnd</option>
-                            <option>DevOps</option>
-                            <option>Cloud Fundamentals</option>
+            <Form.Group>
+              <Form.Label>Topics</Form.Label>
+              <Form.Control
+                as="select"
+                value={topic}
+                onChange={(i) => {
+                  setTopic(i.target.value);
+                }}
+              >
+                <option>FrontEnd</option>
+                <option>BackEnd</option>
+                <option>DevOps</option>
+                <option>Cloud Fundamentals</option>
+              </Form.Control>
+            </Form.Group>
 
-                        </Form.Control>
-                    </Form.Group>
+            <Form.Group>
+              <Form.Label>Trainer</Form.Label>
+              <Form.Control
+                as="select"
+                value={trainer}
+                onChange={(i) => {
+                  setTrainer(i.target.value);
+                }}
+              >
+                <option>Vinesh Ghela</option>
+                <option>Jordan Harrison</option>
+                <option>Reece Elder</option>
+                <option>Nathan Forester</option>
+                <option>Harry Volker</option>
+              </Form.Control>
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Urgency</Form.Label>
+              <Form.Control
+                as="select"
+                value={trainer}
+                onChange={(i) => {
+                  setUrgency(i.target.value);
+                }}
+              >
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </Form.Control>
+            </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Trainer</Form.Label>
-                        <Form.Control
-                            as="select"
-                            value={trainer}
-                            onChange={(i)=>{
-                                setTrainer(i.target.value);
-                            }}
-                        >
-                            <option>Vinesh Ghela</option>
-                            <option>Jordan Harrison</option>
-                            <option>Reece Elder</option>
-                            <option>Nathan Forester</option>
-                            <option>Harry Volker</option>
-                        </Form.Control>
-                    </Form.Group>
+            <Form.Group>
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                value={title}
+                onChange={(i) => {
+                  setTitle(i.target.value);
+                }}
+              />
+            </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control
-                            type="text"
-                            value={title}
-                            onChange={(i) => {
-                                setTitle(i.target.value);
-                            }}
-                        />
-                    </Form.Group>
+            <Form.Group>
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={5}
+                value={description}
+                onChange={(i) => {
+                  setDescription(i.target.value);
+                }}
+              />
+            </Form.Group>
+          </Form>
 
-                    <Form.Group>
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control
-                            as="textarea"
-                            rows={5}
-                            value={description}
-                            onChange={(i) => {
-                                setDescription(i.target.value);
-                            }}
-                        />
-                    </Form.Group>
-                </Form>
-
-                <Button
-                    onClick = {updateData}
-                    type="submit"
-                    variant="success"
-                    size="lg"
-                    block
-                >Update Ticket
-                
-                </Button>
-            </Modal.Body>
-        </Modal>
+          <Button
+            onClick={updateData}
+            type="submit"
+            variant="success"
+            size="lg"
+            block
+          >
+            Update Ticket
+          </Button>
+        </Modal.Body>
+      </Modal>
     </>
-  ) 
-
-
-
-}
+  );
+};
 export default UpdateTicket;
