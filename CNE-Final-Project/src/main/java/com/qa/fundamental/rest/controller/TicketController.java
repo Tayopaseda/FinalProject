@@ -73,6 +73,16 @@ public class TicketController {
 	public ResponseEntity<List<Ticket>> readCompletedByTopic(@PathVariable String topic){
 		return ResponseEntity.ok(this.service.readCompletedByTopic(topic)); 
 	}
+
+	@GetMapping("/readCompleted/Urgency/{urgency}")
+	public ResponseEntity<List<Ticket>> readByCompletedUrgency(@PathVariable String urgency){
+		return ResponseEntity.ok(this.service.readByCompletedUrgency(urgency)); 
+	}
+	
+	@GetMapping("/readQueued/Urgency/{urgency}")
+	public ResponseEntity<List<Ticket>> readByQueuedUrgency(@PathVariable String urgency){
+		return ResponseEntity.ok(this.service.readByQueuedUrgency(urgency)); 
+	}
 	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Ticket> deleteById(@PathVariable Long id) {
