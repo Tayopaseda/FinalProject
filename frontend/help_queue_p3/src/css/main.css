@@ -61,11 +61,6 @@
   position: relative;
 }
 
-.custom-select {
-  position: relative;
-  font-family: "Courier New", Courier, monospace;
-}
-
-.custom-select select {
-  display: none;
+#test {
+  margin-bottom: 20px;
 }

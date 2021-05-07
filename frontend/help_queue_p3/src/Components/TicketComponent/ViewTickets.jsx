@@ -223,6 +223,7 @@ const ViewTickets = ({
                   <Form.Label>Solution</Form.Label>
                   <Form.Control
                     as="textarea"
+                    value={solution}
                     required
                     rows={5}
                     onChange={(i) => {

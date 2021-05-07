@@ -9,7 +9,7 @@ const OpenTickets = ({ openTicket, refreshPage }) => {
   //add setrefresh thingy
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card id="test" style={{ width: "18rem" }}>
       <Card.Body>
         <Card.Title>{openTicket.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
