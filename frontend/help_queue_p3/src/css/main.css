@@ -14,13 +14,24 @@
   padding-top: 50px;
   margin: auto;
   overflow: auto;
+  scrollbar-color: #528789;
   height: 1000px;
   /* border: 5px solid #00ccff;
   border-style: ridge; */
 }
 
+#mainDiv::-webkit-scrollbar {
+  width: 100px;
+}
+
+#mainDiv::-webkit-scrollbar-track {
+  background-color: aqua;
+}
+
 #createBtn {
   margin-bottom: 20px;
+  background-color: #35a6a9;
+  position: relative;
 }
 
 #mainBanner {
@@ -30,7 +41,7 @@
 }
 
 #dropdown {
-  top: 93px;
-  position: sticky;
+  top: 10px;
+  position: relative;
   float: right;
 }
