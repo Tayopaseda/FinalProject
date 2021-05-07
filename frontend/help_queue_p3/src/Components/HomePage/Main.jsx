@@ -8,6 +8,7 @@ import ClosedTickets from "../TicketComponent/ClosedTickets";
 import CreateTicket from "../TicketComponent/CreateTicket";
 import Completed from "../../css/images/Completed.png";
 import Queued from "../../css/images/Queued.png";
+import CohortLogo from "../../css/images/CohortSelect.png";
 
 const Main = () => {
   const [dataCompleted, setDataCompleted] = useState([]);
@@ -110,17 +111,14 @@ const Main = () => {
         <>
           <Container>
             <div id="dropdown">
-              <h3>Select a Cohort</h3>
-
-              <div class="custom-select">
-                <select onChange={handleChange} placeholder="Choose a Cohort">
-                  {cohortList.map((ticket, index) => (
-                    <option key={index} value={ticket}>
-                      {ticket}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <img src={CohortLogo} alt="logo" />
+              <select onChange={handleChange}>
+                {cohortList.map((ticket, index) => (
+                  <option key={index} value={ticket}>
+                    {ticket}
+                  </option>
+                ))}
+              </select>
             </div>
             <CreateTicket refreshPage={setRefresh} />
             <div id="queuedDiv">
