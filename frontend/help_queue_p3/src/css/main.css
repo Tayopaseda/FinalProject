@@ -10,28 +10,39 @@
 
 #mainDiv {
   width: 1000px;
-  padding-left: 100px;
-  padding-top: 50px;
+  padding-left: 240px;
+  padding-top: 20px;
   margin: auto;
-  overflow: auto;
-  scrollbar-color: #528789;
   height: 1000px;
   /* border: 5px solid #00ccff;
   border-style: ridge; */
 }
 
-#mainDiv::-webkit-scrollbar {
-  width: 100px;
+#queuedDiv {
+  width: 200px;
+  padding-top: 40px;
+  padding-left: 240px;
+  float: left;
+  margin: auto;
 }
-
-#mainDiv::-webkit-scrollbar-track {
-  background-color: aqua;
+#completedDiv {
+  width: 10px;
+  padding-top: 40px;
+  padding-right: 490px;
+  float: right;
+  margin: auto;
 }
 
 #createBtn {
   margin-bottom: 20px;
   background-color: #35a6a9;
   position: relative;
+}
+
+#createBtnDiv {
+  position: relative;
+  width: 100px;
+  height: 100px;
 }
 
 #mainBanner {
@@ -44,4 +55,17 @@
   top: 10px;
   position: relative;
   float: right;
+}
+
+#QueuedBanner {
+  position: relative;
+}
+
+.custom-select {
+  position: relative;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.custom-select select {
+  display: none;
 }

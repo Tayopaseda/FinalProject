@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import axios from "axios";
 import { Col, Container, Row } from "react-bootstrap";
+import Scrollbars from "react-custom-scrollbars";
 import OpenTickets from "../TicketComponent/OpenTickets";
 import ClosedTickets from "../TicketComponent/ClosedTickets";
 import CreateTicket from "../TicketComponent/CreateTicket";
@@ -111,45 +112,52 @@ const Main = () => {
             <div id="dropdown">
               <h3>Select a Cohort</h3>
 
-              <select onChange={handleChange} placeholder="Choose a Cohort">
-                {cohortList.map((ticket, index) => (
-                  <option key={index} value={ticket}>
-                    {ticket}
-                  </option>
-                ))}
-              </select>
+              <div class="custom-select">
+                <select onChange={handleChange} placeholder="Choose a Cohort">
+                  {cohortList.map((ticket, index) => (
+                    <option key={index} value={ticket}>
+                      {ticket}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-
             <CreateTicket refreshPage={setRefresh} />
-
-            <div id="mainDiv">
-              <Row>
-                <Col id="queuedColumn">
-                  <img src={Queued} alt="Logo" id="QueuedBanner" />
-                  {dataQueued.map((ticket) => (
-                    <Row>
-                      <OpenTickets
-                        key={ticket.id}
-                        openTicket={ticket}
-                        refreshPage={setRefresh}
-                      />
-                    </Row>
-                  ))}
-                </Col>
-                <Col id="completedColumn">
-                  <img src={Completed} alt="Logo" id="CompletedBanner" />
-                  {dataCompleted.map((ticket) => (
-                    <Row>
-                      <ClosedTickets
-                        key={ticket.id}
-                        closedTicket={ticket}
-                        refreshPage={setRefresh}
-                      />
-                    </Row>
-                  ))}
-                </Col>
-              </Row>
+            <div id="queuedDiv">
+              <img src={Queued} alt="Logo" id="queuedBanner" />
             </div>
+            <div id="completedDiv">
+              <img src={Completed} alt="Logo" id="completedBanner" />
+            </div>
+
+            <Scrollbars style={{ width: 1000, height: 900 }}>
+              <div id="mainDiv">
+                <Row>
+                  <Col id="queuedColumn">
+                    {dataQueued.map((ticket) => (
+                      <Row>
+                        <OpenTickets
+                          key={ticket.id}
+                          openTicket={ticket}
+                          refreshPage={setRefresh}
+                        />
+                      </Row>
+                    ))}
+                  </Col>
+                  <Col id="completedColumn">
+                    {dataCompleted.map((ticket) => (
+                      <Row>
+                        <ClosedTickets
+                          key={ticket.id}
+                          closedTicket={ticket}
+                          refreshPage={setRefresh}
+                        />
+                      </Row>
+                    ))}
+                  </Col>
+                </Row>
+              </div>
+            </Scrollbars>
           </Container>
         </>
       );
@@ -168,37 +176,42 @@ const Main = () => {
                 ))}
               </select>
             </div>
-
             <CreateTicket refreshPage={setRefresh} />
-
-            <div id="mainDiv">
-              <Row>
-                <Col id="queuedColumn">
-                  <img src={Queued} alt="Logo" id="QueuedBanner" />
-                  {filteredCohortListOpen.map((ticket) => (
-                    <Row>
-                      <OpenTickets
-                        key={ticket.id}
-                        openTicket={ticket}
-                        refreshPage={setRefresh}
-                      />
-                    </Row>
-                  ))}
-                </Col>
-                <Col id="completedColumn">
-                  <img src={Completed} alt="Logo" id="CompletedBanner" />
-                  {filteredCohortListClosed.map((ticket) => (
-                    <Row>
-                      <ClosedTickets
-                        key={ticket.id}
-                        closedTicket={ticket}
-                        refreshPage={setRefresh}
-                      />
-                    </Row>
-                  ))}
-                </Col>
-              </Row>
+            <div id="queuedDiv">
+              <img src={Queued} alt="Logo" id="queuedBanner" />
             </div>
+            <div id="completedDiv">
+              <img src={Completed} alt="Logo" id="completedBanner" />
+            </div>
+
+            <Scrollbars style={{ width: 1000, height: 900 }}>
+              <div id="mainDiv">
+                <Row>
+                  <Col id="queuedColumn">
+                    {filteredCohortListOpen.map((ticket) => (
+                      <Row>
+                        <OpenTickets
+                          key={ticket.id}
+                          openTicket={ticket}
+                          refreshPage={setRefresh}
+                        />
+                      </Row>
+                    ))}
+                  </Col>
+                  <Col id="completedColumn">
+                    {filteredCohortListClosed.map((ticket) => (
+                      <Row>
+                        <ClosedTickets
+                          key={ticket.id}
+                          closedTicket={ticket}
+                          refreshPage={setRefresh}
+                        />
+                      </Row>
+                    ))}
+                  </Col>
+                </Row>
+              </div>
+            </Scrollbars>
           </Container>
         </>
       );

@@ -47,9 +47,11 @@ const CreateTicket = ({ refreshPage }) => {
 
   return (
     <>
-      <Button id="createBtn" variant="light" onClick={handleShow}>
-        <img src={CreateTicketImg} alt="createTicketBtn" />
-      </Button>
+      <div id="CreateBtnDiv">
+        <Button id="createBtn" variant="light" onClick={handleShow}>
+          <img src={CreateTicketImg} alt="createTicketBtn" />
+        </Button>
+      </div>
 
       <Modal
         show={show}
