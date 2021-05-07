@@ -47,14 +47,6 @@ public class TicketService {
 	public List<Ticket> readQueuedByTopic(String topic){
 		return this.repo.readQueuedByTopic(topic);
 	}
-
-	public List<Ticket> readByQueuedUrgency(String urgency){
-		return this.repo.readByQueuedUrgency(urgency);
-	}
-	
-	public List<Ticket> readByCompletedUrgency(String urgency){
-		return this.repo.readByCompletedUrgency(urgency);
-	}
 	
 	public boolean deleteTicket(Long id) {
 		this.repo.deleteById(id);
@@ -82,6 +74,7 @@ public class TicketService {
 		old.setTrainer(ticket.getTrainer());
 		old.setDateTime(ticket.getDateTime());
 		old.setSolution(ticket.getSolution());
+		old.setUrgency(ticket.getUrgency());
 		return this.repo.save(old);
 	}
 }
