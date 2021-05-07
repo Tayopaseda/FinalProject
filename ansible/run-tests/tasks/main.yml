@@ -1,0 +1,49 @@
+---
+# tasks file for run-tests
+- name: 'pull git repo'
+  shell: git clone https://github.com/HaychBe/shiny-funicular && cd shiny-funicular && git checkout -b dev && git pull origin dev
+
+- name: 'substitute endpoint in'
+  script: /home/jenkins/.jenkins/workspace/deploy-app/scripts/frontend-setup.sh
+
+- name: 'build backend images'
+  shell: cd shiny-funicular && cd CNE-Final-Project && docker build -t backend .
+
+- name: 'build frontend images'
+  shell: cd shiny-funicular && cd frontend/help_queue_p3 && docker build -t frontend .
+
+- name: 'create bridge network for containers'
+  shell: docker network create app-network
+
+- name: 'run containers'
+  shell: docker run --network app-network -d --name backend backend
+
+- name: 'get controller test results'
+  shell: mkdir Tests && docker exec backend cat /opt/app/com.qa.fundamental.rest.TicketControllerIntegrationTest.txt > Tests/TicketControllerIntegrationTest.txt
+
+- name: 'get service unit test results'
+  shell: docker exec backend cat /opt/app/com.qa.fundamental.service.TicketServiceUnitTests.txt > Tests/TicketServiceUnitTests.txt
+
+- name: 'get service integration test results'
+  shell: docker exec backend cat /opt/app/com.qa.fundamental.service.TicketServiceIntegrationTests.txt > Tests/TicketServiceIntegrationTests.txt          
+
+- name: 'save backend controller integration tests'
+  fetch: 
+    src: /home/ubuntu/Tests/TicketControllerIntegrationTest.txt
+    dest: /home/jenkins/.jenkins/workspace/deploy-app/Tests/ 
+    flat: yes
+
+- name: 'save backend service unit tests'
+  fetch:
+    src: /home/ubuntu/Tests/TicketServiceUnitTests.txt
+    dest: /home/jenkins/.jenkins/workspace/deploy-app/Tests/
+    flat: yes
+
+- name: 'save backend service integration tests'
+  fetch:
+    src: /home/ubuntu/Tests/TicketServiceIntegrationTests.txt
+    dest: /home/jenkins/.jenkins/workspace/deploy-app/Tests/
+    flat: yes
+
+- name: 'clean up'
+  shell: docker stop backend && docker rm backend && docker network rm app-network && rm -r -f shiny-funicular Tests

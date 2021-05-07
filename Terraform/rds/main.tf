@@ -1,0 +1,21 @@
+resource "aws_db_subnet_group" "rds" {
+  name = "rds-subnet-group"
+  subnet_ids = [var.rds-sub-1, var.rds-sub-2]
+  
+  tags = {
+    name = "database subnet group"
+  }
+}
+
+
+resource "aws_db_instance" "prod-db" {
+  allocated_storage = 20
+  engine = "mysql"
+  instance_class = "db.t2.micro"
+  name = "ticket"
+  username = var.username
+  password = var.password
+  db_subnet_group_name = aws_db_subnet_group.rds.id
+  vpc_security_group_ids = [var.prod-db-sg]
+  skip_final_snapshot = true
+}

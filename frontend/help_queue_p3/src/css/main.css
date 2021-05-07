@@ -1,0 +1,66 @@
+#queuedColumn {
+  /* overflow: auto; */
+  height: 1000px;
+}
+
+#completedColumn {
+  /* overflow: auto; */
+  height: 1000px;
+}
+
+#mainDiv {
+  width: 1000px;
+  padding-left: 240px;
+  padding-top: 20px;
+  margin: auto;
+  height: 1000px;
+  /* border: 5px solid #00ccff;
+  border-style: ridge; */
+}
+
+#queuedDiv {
+  width: 200px;
+  padding-top: 40px;
+  padding-left: 240px;
+  float: left;
+  margin: auto;
+}
+#completedDiv {
+  width: 10px;
+  padding-top: 40px;
+  padding-right: 490px;
+  float: right;
+  margin: auto;
+}
+
+#createBtn {
+  margin-bottom: 20px;
+  background-color: #35a6a9;
+  position: relative;
+}
+
+#createBtnDiv {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+#mainBanner {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#dropdown {
+  top: 10px;
+  position: relative;
+  float: right;
+}
+
+#QueuedBanner {
+  position: relative;
+}
+
+#test {
+  margin-bottom: 20px;
+}
