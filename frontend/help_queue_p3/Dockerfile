@@ -22,4 +22,4 @@ CMD ["npm", "run", "test", "--watchAll=false", "--coverage"]
 # expose port 3000
 EXPOSE 3000
 # start app
-CMD ["npm", "start"]
+CMD ["npm", "build"]
