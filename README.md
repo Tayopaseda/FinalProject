@@ -91,20 +91,16 @@ The purpose of the website is to have a fully functional CRUD (Create, Read, Upd
 The images below show the frontend design being fully functional;
 
 ##### Ticket Page
-![]()
+![](https://i.imgur.com/z8Wtu8S.png)
 
 ##### Add Ticket
-![]()
+![](https://i.imgur.com/GnTLOoH.png)
 
 ##### Edit Ticket
-![]()
+![](https://i.imgur.com/RL244Ye.png)
 
-##### Delete Ticket
-![]()
-
-##### Solution Page
-![]()
-
+##### Solution
+![](https://i.imgur.com/G3mw2q8.png)
 
 # DevOps
 
