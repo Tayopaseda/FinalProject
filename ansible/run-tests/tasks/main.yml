@@ -1,16 +1,16 @@
 ---
 # tasks file for run-tests
 - name: 'pull git repo'
-  shell: git clone https://github.com/HaychBe/shiny-funicular && cd shiny-funicular
+  shell: git clone https://github.com/Tayopaseda/FinalProject && cd FinalProject
 
 - name: 'substitute endpoint in'
   script: /home/jenkins/.jenkins/workspace/deploy-app/scripts/frontend-setup.sh
 
 - name: 'build backend images'
-  shell: cd shiny-funicular && cd CNE-Final-Project && docker build -t backend .
+  shell: cd FinalProject && cd CNE-Final-Project && docker build -t backend .
 
 - name: 'build frontend images'
-  shell: cd shiny-funicular && cd frontend/help_queue_p3 && docker build -t frontend .
+  shell: cd FinalProject && cd frontend/help_queue_p3 && docker build -t frontend .
 
 - name: 'create bridge network for containers'
   shell: docker network create app-network
@@ -46,4 +46,4 @@
     flat: yes
 
 - name: 'clean up'
-  shell: docker stop backend && docker rm backend && docker network rm app-network && rm -r -f shiny-funicular Tests
+  shell: docker stop backend && docker rm backend && docker network rm app-network && rm -r -f FinalProject Tests
